@@ -30,7 +30,7 @@ var Player = function (assetManager, stage, myX, myY) {
     var direction = MoverDirection.LEFT;
     var lastDirection = MoverDirection.RIGHT;
 
-    // add sirius to the screen
+    // add player to the screen
     var sprite = assetManager.getSprite("assets");
     sprite.gotoAndPlay("standDown");
     sprite.x = myX;
@@ -74,7 +74,7 @@ var Player = function (assetManager, stage, myX, myY) {
             ary[ary.length] = randomnumber;
         }
 
-        getPhysical = true;
+        //getPhysical = true;
 
         return ary;
     }
@@ -237,7 +237,7 @@ var Player = function (assetManager, stage, myX, myY) {
         }
 
 
-        getPhysical = true;
+        //getPhysical = true;
 
         return ary;
     };
