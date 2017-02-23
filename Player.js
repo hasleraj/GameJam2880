@@ -25,7 +25,7 @@ var Player = function (assetManager, stage, myX, myY) {
     // stances
     var moving = false;
     var getPhysical = false;
-  
+
     var speed = 5;
     var direction = MoverDirection.LEFT;
     var lastDirection = MoverDirection.RIGHT;
@@ -68,13 +68,11 @@ var Player = function (assetManager, stage, myX, myY) {
     function getPhysics() {
         var ary = [];
 
-        while(ary.length < 4) {
-            var randomnumber = Math.ceil(Math.random()*4);
-            if(ary.indexOf(randomnumber) > -1) continue;
+        while (ary.length < 4) {
+            var randomnumber = Math.ceil(Math.random() * 4);
+            if (ary.indexOf(randomnumber) > -1) continue;
             ary[ary.length] = randomnumber;
         }
-
-        console.log(ary);
 
         getPhysical = true;
 
@@ -98,7 +96,7 @@ var Player = function (assetManager, stage, myX, myY) {
                 direction = getPhysics()[1];
             } else {
                 direction = MoverDirection.RIGHT;
-            }       
+            }
 
             sprite.gotoAndStop("walkRight");
             startMe();
@@ -118,11 +116,11 @@ var Player = function (assetManager, stage, myX, myY) {
                 direction = getPhysics()[3];
             } else {
                 direction = MoverDirection.UP;
-            }       
+            }
 
             sprite.gotoAndStop("walkUp");
-            startMe(); 
-        } 
+            startMe();
+        }
 
     }
 
@@ -219,16 +217,14 @@ var Player = function (assetManager, stage, myX, myY) {
 
     };
 
-    this.resetKeys = function() {
+    this.resetKeys = function () {
         var ary = [];
 
-        while(ary.length < 4) {
-            var randomnumber = Math.ceil(Math.random()*4);
-            if(ary.indexOf(randomnumber) > -1) continue;
+        while (ary.length < 4) {
+            var randomnumber = Math.ceil(Math.random() * 4);
+            if (ary.indexOf(randomnumber) > -1) continue;
             ary[ary.length] = randomnumber;
         }
-
-        console.log(ary);
 
         getPhysical = true;
 
@@ -277,16 +273,16 @@ var Player = function (assetManager, stage, myX, myY) {
     function brokenPhysics(e) {
         var ary = [];
 
-        while(ary.length < 4) {
-            var randomnumber = Math.ceil(Math.random()*4);
-            if(ary.indexOf(randomnumber) > -1) continue;
+        while (ary.length < 4) {
+            var randomnumber = Math.ceil(Math.random() * 4);
+            if (ary.indexOf(randomnumber) > -1) continue;
             ary[ary.length] = randomnumber;
         }
 
         console.log(ary);
 
         for (var i = 0; i < 4; i++) {
-            switch(arr[i]) {
+            switch (arr[i]) {
             case 1:
                 console.log("I'm a 1");
                 break;
@@ -298,9 +294,8 @@ var Player = function (assetManager, stage, myX, myY) {
                 break;
             default:
                 console.log("I'm a 4");
-            } 
+            }
         }
-        
     }
 };
 

@@ -9,15 +9,21 @@ var Fireball = function (stage, assetManager, player) {
     // initialization
     var playerSprite = player.getSprite();
     // construct custom event objects
-    var eventPlayerBurned = new createjs.Event("onPlayerBurned", true);
+    var eventPlayerBurned = new createjs.Event("contentFinished");
+    // construct container object
+    var screen = new createjs.Container();
 
-    // is the bug currently being used?
+    var velX = 0;
+    var velY = 0;
+
+    // is the fireball currently being used?
     var active = false;
 
     // construct sprite for this object and add to stage
     var sprite = assetManager.getSprite("assets");
-    sprite.gotoAndStop("flameOn");
+    sprite.gotoAndStop("walkRight");
     var spriteMover = new MoverDiagonal(sprite, stage);
+
 
     // --------------------------------------------- private methods
     function randomMe(low, high) {
@@ -45,7 +51,6 @@ var Fireball = function (stage, assetManager, player) {
         if (randomMe(1, 2) == 1) {
             // move right
             sprite.x = -dimensions.width;
-            // randomly select starting y location of mower
             sprite.y = randomMe(50, 550);
             sprite.rotation = randomMe(45, -45);
         } else {
@@ -54,23 +59,20 @@ var Fireball = function (stage, assetManager, player) {
             sprite.y = randomMe(50, 550);
             sprite.rotation = randomMe(135, 225);
         }
-
-        // listen for when the fireball goes off the screen and kill it if it does
-        sprite.addEventListener("onStageExitDiagonal", onKillMe);
     };
 
     this.releaseMe = function () {
-        // fire startMe again to take the new rotation of the flame
-        sprite.gotoAndPlay("flameOn");
+        // fire startMe again to take the new rotation of the fireball
+        sprite.gotoAndPlay("walkRight");
         spriteMover.startMe();
 
-        // add fireballs so they are below the player (player)
-        stage.addChildAt(sprite, stage.getChildIndex(playerSprite));
+        stage.addChild(sprite);
+
     };
 
     this.updateMe = function () {
-        // if bug not moving then nothing to update!
-        if ((!spriteMover.getMoving()) || (player.getKilled())) return;
+        // if fireball not moving then nothing to update!
+        if ((!spriteMover.getMoving())) return;
 
         spriteMover.update();
 
@@ -79,10 +81,7 @@ var Fireball = function (stage, assetManager, player) {
         var b = playerSprite.y - sprite.y;
         // Get distance with Pythagoras
         var c = Math.sqrt((a * a) + (b * b));
-        // flame has a radius of 20
-        // player has a radius of 30
-        // force the radius of the circle on the player to only be 5
-        // sum of 5 + 20 = 25
+
         if (c <= 25) {
             console.log("collision!");
             sprite.dispatchEvent(eventPlayerBurned);
@@ -93,8 +92,8 @@ var Fireball = function (stage, assetManager, player) {
     // ----------------------------------------------- event handlers
     function onKillMe(e) {
         spriteMover.stopMe();
-        // play death sequence of bug
-        sprite.gotoAndPlay("flameOff");
+        // play death sequence of fireball
+        sprite.gotoAndPlay("walkRight");
         sprite.addEventListener("animationend", onKilled);
     }
 
