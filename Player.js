@@ -125,7 +125,6 @@ var Player = function (assetManager, stage, myX, myY) {
             sprite.gotoAndStop("walkUp");
             startMe();
         }
-
     }
 
     // ------------------------------------ gets/sets
@@ -228,12 +227,9 @@ var Player = function (assetManager, stage, myX, myY) {
             ary[ary.length] = randomnumber;
         }
 
-        << << << < HEAD
-        getPhysical = true; === === =
-        console.log(ary);
 
-        //getPhysical = true;
-        >>> >>> > a2fd4fc216e16b0bf8adb66a3a0af20e3a252f96
+        getPhysical = true;
+        console.log(ary);
 
         return ary;
     };
@@ -242,7 +238,6 @@ var Player = function (assetManager, stage, myX, myY) {
 
 
     function onKeyPress(e) {
-        //console.log("key was pressed " + e.keyCode);
 
         if (e.keyCode == 87) {
             upKey = true;
@@ -264,7 +259,6 @@ var Player = function (assetManager, stage, myX, myY) {
     }
 
     function onKeyRelease(e) {
-        //console.log("key was pressed " + e.keyCode);
         if (e.keyCode == 65) {
             leftKey = false;
         } else if (e.keyCode == 68) {
