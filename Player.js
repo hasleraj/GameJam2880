@@ -30,6 +30,8 @@ var Player = function (assetManager, stage, myX, myY) {
     var direction = MoverDirection.LEFT;
     var lastDirection = MoverDirection.RIGHT;
 
+    var timer = null;
+
     // add sirius to the screen
     var sprite = assetManager.getSprite("assets");
     sprite.gotoAndPlay("standDown");
@@ -154,6 +156,8 @@ var Player = function (assetManager, stage, myX, myY) {
         // do other stuff here that needs to be done when screen becomes visible
         // ....
 
+        timer = window.setInterval(timerTester, 3000);
+
 
         stage.addChild(screen);
     };
@@ -214,7 +218,6 @@ var Player = function (assetManager, stage, myX, myY) {
                 }
             }
         }
-
 
     };
 
@@ -297,6 +300,10 @@ var Player = function (assetManager, stage, myX, myY) {
                 console.log("I'm a 4");
             }
         }
+    }
+
+    function timerTester(e) {
+        console.log("Boop!");
     }
 };
 
