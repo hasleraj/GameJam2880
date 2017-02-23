@@ -37,6 +37,13 @@
     var fireballMax = 50;
     var fireballPool = [];
 
+    // compass timer to add gameplay
+    var compassTimer = null;
+    var compassDelay = 0;
+    // object pooling
+    var compassMax = 50;
+    var compassPool = [];
+
     // ------------------------------------------------------------ private methods
 
 
@@ -49,7 +56,7 @@
         // set canvas to as wide/high as the browser window
         canvas.width = 600;
         canvas.height = 600;
-        canvas.style.backgroundColor = "#FFFFFF";
+        canvas.style.backgroundColor = "#CC0099";
         // create stage object
         stage = new createjs.Stage(canvas);
 
@@ -79,10 +86,13 @@
             fireballPool.push(new Fireball(stage, assetManager, entity));
         }
 
-
+        // compass object pooling - constructing compass objects
+        for (var i = 0; i < compassMax; i++) {
+            compassPool.push(new Compass(stage, assetManager, entity));
+        }
 
         entity.resetKeys();
-        
+
 
         // startup the ticker
         createjs.Ticker.setFPS(frameRate);
@@ -97,8 +107,10 @@
 
         // construct and setup fireballtimer to drop fireballs on display list
         fireballDelay = 500;
-        console.log("Into start game");
         fireballTimer = window.setInterval(onAddFireball, fireballDelay);
+
+        compassDelay = 500;
+        compassTimer = window.setInterval(onAddCompass, compassDelay);
 
         // current state of keys
         leftKey = false;
@@ -127,6 +139,19 @@
         }
     }
 
+    function onAddCompass(e) {
+        // find compass in pool and add to game
+        for (var i = 0; i < compassPool.length; i++) {
+            var newCompass = compassPool[i];
+            if (newCompass.getActive() === false) {
+                newCompass.setActive(true);
+                newCompass.setupMe();
+                newCompass.releaseMe();
+                break;
+            }
+        }
+    }
+
     function onTick(e) {
         // TESTING FPS
         document.getElementById("fps").innerHTML = createjs.Ticker.getMeasuredFPS();
@@ -138,6 +163,7 @@
         }
 
         entity.update();
+        entity.updateMe();
         // update the stage!
         stage.update();
     }

@@ -3,25 +3,25 @@
 /*jshint devel:true */
 /*jshint esversion: 6 */
 /* globals MoverDiagonal */
-var Fireball = function (stage, assetManager, player) {
+var Compass = function (stage, assetManager, player) {
     "use strict";
 
     // initialization
     var playerSprite = player.getSprite();
     // construct custom event objects
-    var eventPlayerBurned = new createjs.Event("contentFinished");
+    var eventCompassCollected = new createjs.Event("contentFinished");
     // construct container object
     var screen = new createjs.Container();
 
     var velX = 0;
     var velY = 0;
 
-    // is the fireball currently being used?
+    // is the compass currently being used?
     var active = false;
 
     // construct sprite for this object and add to stage
     var sprite = assetManager.getSprite("assets");
-    sprite.gotoAndPlay("fireBall");
+    sprite.gotoAndPlay("walkRight");
     var spriteMover = new MoverDiagonal(sprite, stage);
 
 
@@ -41,13 +41,13 @@ var Fireball = function (stage, assetManager, player) {
 
     // ---------------------------------------------- public methods
     this.setupMe = function () {
-        // random selection of speed of fireball
+        // random selection of speed of compass
         spriteMover.setSpeed(randomMe(2, 6));
 
         // get bounds of sprite so we can determine width / height
         var dimensions = sprite.getBounds();
 
-        // fireball starts on left or right of stage
+        // compass starts on left or right of stage
         if (randomMe(1, 2) == 1) {
             // move right
             sprite.x = -dimensions.width;
@@ -62,8 +62,8 @@ var Fireball = function (stage, assetManager, player) {
     };
 
     this.releaseMe = function () {
-        // fire startMe again to take the new rotation of the fireball
-        sprite.gotoAndPlay("fireBall");
+        // fire startMe again to take the new rotation of the compass
+        sprite.gotoAndPlay("walkRight");
         spriteMover.startMe();
 
         stage.addChild(sprite);
@@ -71,7 +71,7 @@ var Fireball = function (stage, assetManager, player) {
     };
 
     this.updateMe = function () {
-        // if fireball not moving then nothing to update!
+        // if compass not moving then nothing to update!
         if ((!spriteMover.getMoving())) return;
 
         spriteMover.update();
@@ -84,27 +84,27 @@ var Fireball = function (stage, assetManager, player) {
 
         if (c <= 25) {
             console.log("collision!");
-            sprite.dispatchEvent(eventPlayerBurned);
-            onKillMe();
+            sprite.dispatchEvent(eventCompassCollected);
+            onCollectMe();
         }
     };
 
     // ----------------------------------------------- event handlers
-    function onKillMe(e) {
+    function onCollectMe(e) {
         spriteMover.stopMe();
-        // play death sequence of fireball
-        sprite.gotoAndPlay("fireBall");
-        sprite.addEventListener("animationend", onKilled);
+        // play death sequence of compass
+        sprite.gotoAndPlay("walkRight");
+        sprite.addEventListener("animationend", onCollected);
     }
 
-    function onKilled(e) {
+    function onCollected(e) {
         // cleanup event listeners
         e.remove();
         sprite.removeAllEventListeners();
         // remove displayobject
         stage.removeChild(sprite);
 
-        // put fireball back in the pool
+        // put compass back in the pool
         active = false;
     }
 

@@ -30,9 +30,13 @@ var Player = function (assetManager, stage, myX, myY) {
     var direction = MoverDirection.LEFT;
     var lastDirection = MoverDirection.RIGHT;
 
+<<<<<<< HEAD
     var timer = null;
 
     // add sirius to the screen
+=======
+    // add player to the screen
+>>>>>>> cffb16d01ca89e81b6d3f49044d1108c26b45018
     var sprite = assetManager.getSprite("assets");
     sprite.gotoAndPlay("standDown");
     sprite.x = myX;
@@ -75,10 +79,6 @@ var Player = function (assetManager, stage, myX, myY) {
             if (ary.indexOf(randomnumber) > -1) continue;
             ary[ary.length] = randomnumber;
         }
-
-        getPhysical = true;
-
-        console.log(ary);
 
         //getPhysical = true;
 
@@ -218,8 +218,25 @@ var Player = function (assetManager, stage, myX, myY) {
                 }
             }
         }
-
     };
+
+<<<<<<< HEAD
+=======
+    this.updateMe = function () {
+        var dimensions = sprite.getBounds();
+        //collision test with walls
+        if (sprite.x < 0 /* left  */ ) {
+            sprite.x = 0;
+        } else if (sprite.x > 600 /* right */ ) {
+            sprite.x = 600;
+        } else if (sprite.y < 0) {
+            sprite.y = 0;
+        } else if (sprite.y > 600) {
+            sprite.y = (dimensions.height) / 2;
+        }
+>>>>>>> cffb16d01ca89e81b6d3f49044d1108c26b45018
+    };
+
 
     this.resetKeys = function () {
         var ary = [];
@@ -231,8 +248,7 @@ var Player = function (assetManager, stage, myX, myY) {
         }
 
 
-        getPhysical = true;
-        console.log(ary);
+        //getPhysical = true;
 
         return ary;
     };
@@ -286,7 +302,7 @@ var Player = function (assetManager, stage, myX, myY) {
         console.log(ary);
 
         for (var i = 0; i < 4; i++) {
-            switch (arr[i]) {
+            switch (ary[i]) {
             case 1:
                 console.log("I'm a 1");
                 break;
@@ -302,9 +318,12 @@ var Player = function (assetManager, stage, myX, myY) {
         }
     }
 
+<<<<<<< HEAD
     function timerTester(e) {
         console.log("Boop!");
     }
+=======
+>>>>>>> cffb16d01ca89e81b6d3f49044d1108c26b45018
 };
 
 
