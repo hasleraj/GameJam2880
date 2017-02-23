@@ -76,7 +76,7 @@ var Player = function (assetManager, stage, myX, myY) {
 
         console.log(ary);
 
-        getPhysical = true;
+        //getPhysical = true;
 
         return ary;
     }
@@ -100,7 +100,7 @@ var Player = function (assetManager, stage, myX, myY) {
                 direction = MoverDirection.RIGHT;
             }       
 
-            sprite.gotoAndStop("walkRight");
+            sprite.gotoAndStop("walkLeft");
             startMe();
 
         } else if (downKey && !moving) {
@@ -230,7 +230,7 @@ var Player = function (assetManager, stage, myX, myY) {
 
         console.log(ary);
 
-        getPhysical = true;
+        //getPhysical = true;
 
         return ary;
     };

@@ -67,11 +67,8 @@
         entity = new Player(assetManager, stage, 275, 275);
         entity.showMe();
 
-<<<<<<< HEAD
         entity.resetKeys();
         
-=======
->>>>>>> 72a91cd53d09065ef0387440f8739432fc39006b
         // startup the ticker
         createjs.Ticker.setFPS(frameRate);
         createjs.Ticker.addEventListener("tick", onTick);
