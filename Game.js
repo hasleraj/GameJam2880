@@ -26,32 +26,7 @@
 
     // ------------------------------------------------------------ private methods
     
-    function monitorKeys(){
-        console.log(player.mover.getMoving());
-        if((leftKey)){
-            player.mover.setDirection(MoverDirection.LEFT);
-            player.mover.startMe();
-            player.gotoAndStop("walkLeft");
-        }else if(rightKey){
-            player.mover.setDirection(MoverDirection.RIGHT);
-            player.mover.startMe();
-            player.gotoAndStop("walkLeft");
-        }else if(downKey){
-            player.mover.setDirection(MoverDirection.DOWN);
-            player.mover.startMe();
-            player.gotoAndStop("walkDown");
-        }else if(upKey){
-            player.mover.setDirection(MoverDirection.UP);
-            player.mover.startMe();
-            player.gotoAndStop("walkUp");
-        }else {
-            player.gotoAndStop("standDown");
-            player.mover.stopMe();
-        }
-        
-    }
-    
-    
+
     // ------------------------------------------------------------ event handlers
     function onInit() {
         console.log(">> initializing");
@@ -81,68 +56,23 @@
         leftKey = false;
         rightKey = false;
         
-        // construct game object sprites
-        player = assetManager.getSprite("assets");
-        player.x = 275;
-        player.y = 275;
-        player.regX = player.getBounds().width/2;
-        player.regY = player.getBounds().height/2;
-        player.mover = new Mover(player, stage);
-        player.mover.setSpeed(4);
-        player.gotoAndStop("standDown");
-        //stage.addChild(player);
-
         entity = new Player(assetManager, stage, 275, 275);
         entity.showMe();
         
-        document.addEventListener("keydown", onKeyDown);
-        document.addEventListener("keyup", onKeyUp);
-
         // startup the ticker
         createjs.Ticker.setFPS(frameRate);
         createjs.Ticker.addEventListener("tick", onTick);
 
-        moving = player.mover.getMoving();
-
         console.log(">> game ready");
     }
 
-    function onKeyDown(e){
-        console.log("key was pressed " + e.keyCode);
-        if(e.keyCode == 65){
-            leftKey = true;
-        }else if(e.keyCode == 68){
-           rightKey = true;
-        }else if(e.keyCode == 83){
-            downKey = true;
-        }else if(e.keyCode == 87){
-            upKey = true;
-        } 
-       
-    }
     
-    function onKeyUp(e){
-        console.log("key was pressed " + e.keyCode);
-        if(e.keyCode == 65){
-            leftKey = false;
-        }else if(e.keyCode == 68){
-           rightKey = false;
-        }else if(e.keyCode == 83){
-            downKey = false;
-        }else if(e.keyCode == 87){
-            upKey = false;
-        } 
-        //snake.mover.stopMe();
-    }
     
     function onTick(e) {
         // TESTING FPS
         document.getElementById("fps").innerHTML = createjs.Ticker.getMeasuredFPS();
 
-        monitorKeys();
-        
         // game loop code here
-        player.mover.update();
         entity.update();
         // update the stage!
         stage.update();
