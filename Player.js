@@ -1,3 +1,9 @@
+/* globals createjs */
+/*jshint browser:true */
+/*jshint devel:true */
+/*jshint esversion: 6 */
+/*globals AssetManager */
+/* globals manifest */
 var Player = function (assetManager, stage, myX, myY) {
     "use strict";
     // custom event
@@ -29,8 +35,8 @@ var Player = function (assetManager, stage, myX, myY) {
     sprite.gotoAndPlay("standDown");
     sprite.x = myX;
     sprite.y = myY;
-    sprite.regX = sprite.getBounds().width/2;
-    sprite.regY = sprite.getBounds().height/2;
+    sprite.regX = sprite.getBounds().width / 2;
+    sprite.regY = sprite.getBounds().height / 2;
     screen.addChild(sprite);
 
     document.addEventListener("keydown", onKeyPress);
@@ -43,7 +49,7 @@ var Player = function (assetManager, stage, myX, myY) {
         velX = myVelocityX;
     }
 
-    function setVelY(myVelocityY){
+    function setVelY(myVelocityY) {
         velY = myVelocityY;
     }
 
@@ -131,15 +137,15 @@ var Player = function (assetManager, stage, myX, myY) {
     };
 
     this.getSprite = function () {
-        return sirius;
+        return sprite;
     };
 
-    this.setVelX = function (myVelX){
+    this.setVelX = function (myVelX) {
         velX = myVelX;
     };
 
-    this.setVelY = function (myVelY){
-        velY = myVelY; 
+    this.setVelY = function (myVelY) {
+        velY = myVelY;
     };
 
     // ---------------------------------- public methods
@@ -234,17 +240,17 @@ var Player = function (assetManager, stage, myX, myY) {
 
     function onKeyPress(e) {
         //console.log("key was pressed " + e.keyCode);
-        
+
         if (e.keyCode == 87) {
             upKey = true;
         }
 
         if (e.keyCode == 65) {
             leftKey = true;
-        }  
+        }
         if (e.keyCode == 68) {
             rightKey = true;
-        } 
+        }
         if (e.keyCode == 83) {
             downKey = true;
         }
@@ -296,7 +302,6 @@ var Player = function (assetManager, stage, myX, myY) {
         }
         
     }
-
 };
 
 
