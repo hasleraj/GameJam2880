@@ -1,5 +1,12 @@
+/* globals createjs */
+/*jshint browser:true */
+/*jshint devel:true */
+/*jshint esversion: 6 */
+/*globals AssetManager */
+/* globals manifest */
+/*globals Player */
 
-(function() {
+(function () {
     "use strict";
 
     window.addEventListener("load", onInit);
@@ -16,7 +23,7 @@
 
     // custom player class
     var entity = null;
-    
+
     // keyboard variables
     var downKey = false;
     var upKey = false;
@@ -25,7 +32,7 @@
     var moving = null;
 
     // ------------------------------------------------------------ private methods
-    
+
 
     // ------------------------------------------------------------ event handlers
     function onInit() {
@@ -55,10 +62,10 @@
         upKey = false;
         leftKey = false;
         rightKey = false;
-        
+
         entity = new Player(assetManager, stage, 275, 275);
         entity.showMe();
-        
+
         // startup the ticker
         createjs.Ticker.setFPS(frameRate);
         createjs.Ticker.addEventListener("tick", onTick);
@@ -66,8 +73,8 @@
         console.log(">> game ready");
     }
 
-    
-    
+
+
     function onTick(e) {
         // TESTING FPS
         document.getElementById("fps").innerHTML = createjs.Ticker.getMeasuredFPS();
