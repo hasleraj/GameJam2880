@@ -79,6 +79,11 @@
             fireballPool.push(new Fireball(stage, assetManager, entity));
         }
 
+
+
+        entity.resetKeys();
+        
+
         // startup the ticker
         createjs.Ticker.setFPS(frameRate);
         createjs.Ticker.addEventListener("tick", onTick);
