@@ -1,3 +1,9 @@
+/* globals createjs */
+/*jshint browser:true */
+/*jshint devel:true */
+/*jshint esversion: 6 */
+/*globals AssetManager */
+/* globals manifest */
 var Player = function (assetManager, stage, myX, myY) {
     // custom event
     var eventScreenComplete = new createjs.Event("contentFinished");
@@ -50,12 +56,12 @@ var Player = function (assetManager, stage, myX, myY) {
             sprite.play();
             moving = true;
         }
-    };
+    }
 
     function stopMe() {
         sprite.stop();
         moving = false;
-    };
+    }
 
     function monitorKeys() {
 
@@ -90,16 +96,16 @@ var Player = function (assetManager, stage, myX, myY) {
     };
 
     this.getSprite = function () {
-        return sirius;
+        return sprite;
     };
 
     this.setVelX = function (myVelX) {
         velX = myVelX;
-    }
+    };
 
     this.setVelY = function (myVelY) {
         velY = myVelY;
-    }
+    };
 
     // ---------------------------------- public methods
     this.showMe = function () {
