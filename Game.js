@@ -59,9 +59,6 @@
         entity = new Player(assetManager, stage, 275, 275);
         entity.showMe();
         
-        document.addEventListener("keydown", onKeyDown);
-        document.addEventListener("keyup", onKeyUp);
-
         // startup the ticker
         createjs.Ticker.setFPS(frameRate);
         createjs.Ticker.addEventListener("tick", onTick);
