@@ -8,7 +8,7 @@ import pencoding.sidescroller.main.Id;
 
 public abstract class Tile {
 
-	public int x, y;
+	var x, y;
 	public int width, height;
 	public int velX, velY;
 	
