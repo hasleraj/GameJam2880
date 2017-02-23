@@ -76,6 +76,10 @@ var Player = function (assetManager, stage, myX, myY) {
 
         getPhysical = true;
 
+        console.log(ary);
+
+        //getPhysical = true;
+
         return ary;
     }
 
@@ -98,7 +102,7 @@ var Player = function (assetManager, stage, myX, myY) {
                 direction = MoverDirection.RIGHT;
             }
 
-            sprite.gotoAndStop("walkRight");
+            sprite.gotoAndStop("walkLeft");
             startMe();
 
         } else if (downKey && !moving) {
@@ -150,8 +154,6 @@ var Player = function (assetManager, stage, myX, myY) {
     this.showMe = function () {
         // do other stuff here that needs to be done when screen becomes visible
         // ....
-
-
 
 
         stage.addChild(screen);
@@ -226,7 +228,12 @@ var Player = function (assetManager, stage, myX, myY) {
             ary[ary.length] = randomnumber;
         }
 
-        getPhysical = true;
+        << << << < HEAD
+        getPhysical = true; === === =
+        console.log(ary);
+
+        //getPhysical = true;
+        >>> >>> > a2fd4fc216e16b0bf8adb66a3a0af20e3a252f96
 
         return ary;
     };
