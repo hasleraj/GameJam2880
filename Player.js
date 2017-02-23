@@ -76,10 +76,6 @@ var Player = function (assetManager, stage, myX, myY) {
 
         getPhysical = true;
 
-        console.log(ary);
-
-        //getPhysical = true;
-
         return ary;
     }
 
@@ -214,9 +210,22 @@ var Player = function (assetManager, stage, myX, myY) {
                 }
             }
         }
-
-
     };
+
+    this.updateMe = function () {
+        var dimensions = sprite.getBounds();
+        //collision test with walls
+        if (sprite.x < 0 /* left  */ ) {
+            sprite.x = 0;
+        } else if (sprite.x > 600 /* right */ ) {
+            sprite.x = 600;
+        } else if (sprite.y < 0) {
+            sprite.y = 0;
+        } else if (sprite.y > 600) {
+            sprite.y = (dimensions.height) / 2;
+        }
+    };
+
 
     this.resetKeys = function () {
         var ary = [];
@@ -229,7 +238,6 @@ var Player = function (assetManager, stage, myX, myY) {
 
 
         getPhysical = true;
-        console.log(ary);
 
         return ary;
     };
@@ -283,7 +291,7 @@ var Player = function (assetManager, stage, myX, myY) {
         console.log(ary);
 
         for (var i = 0; i < 4; i++) {
-            switch (arr[i]) {
+            switch (ary[i]) {
             case 1:
                 console.log("I'm a 1");
                 break;
@@ -298,6 +306,7 @@ var Player = function (assetManager, stage, myX, myY) {
             }
         }
     }
+
 };
 
 

@@ -103,7 +103,6 @@ var Fireball = function (stage, assetManager, player) {
         sprite.removeAllEventListeners();
         // remove displayobject
         stage.removeChild(sprite);
-        console.log("flame destroyed");
 
         // put fireball back in the pool
         active = false;

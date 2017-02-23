@@ -92,7 +92,6 @@
 
         // construct and setup fireballtimer to drop fireballs on display list
         fireballDelay = 500;
-        console.log("Into start game");
         fireballTimer = window.setInterval(onAddFireball, fireballDelay);
 
         // current state of keys
@@ -133,6 +132,7 @@
         }
 
         entity.update();
+        entity.updateMe();
         // update the stage!
         stage.update();
     }
