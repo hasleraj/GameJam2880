@@ -7,6 +7,7 @@
     // game variables
     var stage = null;
     var canvas = null;
+    var tile = null;
 
     // frame rate of game
     var frameRate = 24;
@@ -58,6 +59,8 @@
         
         entity = new Player(assetManager, stage, 275, 275);
         entity.showMe();
+
+        entity.resetKeys();
         
         // startup the ticker
         createjs.Ticker.setFPS(frameRate);

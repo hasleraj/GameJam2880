@@ -1,4 +1,5 @@
 var Player = function (assetManager, stage, myX, myY) {
+    "use strict";
     // custom event
     var eventScreenComplete = new createjs.Event("contentFinished");
 
@@ -17,6 +18,7 @@ var Player = function (assetManager, stage, myX, myY) {
 
     // stances
     var moving = false;
+    var getPhysical = false;
   
     var speed = 5;
     var direction = MoverDirection.LEFT;
@@ -50,31 +52,70 @@ var Player = function (assetManager, stage, myX, myY) {
             sprite.play();
             moving = true;
         }
-    };
+    }
 
     function stopMe() {
         sprite.stop();
         moving = false;
-    };
+    }
+
+    function getPhysics() {
+        var ary = [];
+
+        while(ary.length < 4) {
+            var randomnumber = Math.ceil(Math.random()*4);
+            if(ary.indexOf(randomnumber) > -1) continue;
+            ary[ary.length] = randomnumber;
+        }
+
+        console.log(ary);
+
+        getPhysical = true;
+
+        return ary;
+    }
 
     function monitorKeys() {
 
         if (leftKey && !moving) {
-            direction = MoverDirection.LEFT;
+            if (getPhysical) {
+                direction = getPhysics()[0];
+            } else {
+                direction = MoverDirection.LEFT;
+            }
+
             sprite.gotoAndStop("walkLeft");
             startMe();
+
         } else if (rightKey && !moving) {
-            direction = MoverDirection.RIGHT;
-            sprite.gotoAndStop("walkLeft");
+            if (getPhysical) {
+                direction = getPhysics()[1];
+            } else {
+                direction = MoverDirection.RIGHT;
+            }       
+
+            sprite.gotoAndStop("walkRight");
             startMe();
+
         } else if (downKey && !moving) {
-            direction = MoverDirection.DOWN;
+            if (getPhysical) {
+                direction = getPhysics()[2];
+            } else {
+                direction = MoverDirection.DOWN;
+            }
+
             sprite.gotoAndStop("walkDown");
             startMe();
+
         } else if (upKey && !moving) {
-            direction = MoverDirection.UP;
+            if (getPhysical) {
+                direction = getPhysics()[3];
+            } else {
+                direction = MoverDirection.UP;
+            }       
+
             sprite.gotoAndStop("walkUp");
-            startMe();
+            startMe(); 
         } 
 
     }
@@ -95,11 +136,11 @@ var Player = function (assetManager, stage, myX, myY) {
 
     this.setVelX = function (myVelX){
         velX = myVelX;
-    }
+    };
 
     this.setVelY = function (myVelY){
         velY = myVelY; 
-    }
+    };
 
     // ---------------------------------- public methods
     this.showMe = function () {
@@ -172,11 +213,27 @@ var Player = function (assetManager, stage, myX, myY) {
 
     };
 
+    this.resetKeys = function() {
+        var ary = [];
+
+        while(ary.length < 4) {
+            var randomnumber = Math.ceil(Math.random()*4);
+            if(ary.indexOf(randomnumber) > -1) continue;
+            ary[ary.length] = randomnumber;
+        }
+
+        console.log(ary);
+
+        getPhysical = true;
+
+        return ary;
+    };
+
     // ------------------------------------ event handlers
 
 
     function onKeyPress(e) {
-        console.log("key was pressed " + e.keyCode);
+        //console.log("key was pressed " + e.keyCode);
         
         if (e.keyCode == 87) {
             upKey = true;
@@ -198,7 +255,7 @@ var Player = function (assetManager, stage, myX, myY) {
     }
 
     function onKeyRelease(e) {
-        console.log("key was pressed " + e.keyCode);
+        //console.log("key was pressed " + e.keyCode);
         if (e.keyCode == 65) {
             leftKey = false;
         } else if (e.keyCode == 68) {
@@ -211,7 +268,37 @@ var Player = function (assetManager, stage, myX, myY) {
         stopMe();
     }
 
+    function brokenPhysics(e) {
+        var ary = [];
+
+        while(ary.length < 4) {
+            var randomnumber = Math.ceil(Math.random()*4);
+            if(ary.indexOf(randomnumber) > -1) continue;
+            ary[ary.length] = randomnumber;
+        }
+
+        console.log(ary);
+
+        for (var i = 0; i < 4; i++) {
+            switch(arr[i]) {
+            case 1:
+                console.log("I'm a 1");
+                break;
+            case 2:
+                console.log("I'm a 2");
+                break;
+            case 3:
+                console.log("I'm a 3");
+                break;
+            default:
+                console.log("I'm a 4");
+            } 
+        }
+        
+    }
+
 };
+
 
 // static constant hacking by adding them on as properties of a generic object
 var MoverDirection = {
