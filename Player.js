@@ -4,6 +4,7 @@
 /*jshint esversion: 6 */
 /*globals AssetManager */
 /* globals manifest */
+
 var Player = function (assetManager, stage, myX, myY) {
     "use strict";
     // custom event
@@ -32,6 +33,10 @@ var Player = function (assetManager, stage, myX, myY) {
     var lastDirection = MoverDirection.RIGHT;
 
     var timer = null;
+    var timerTimeout = 3000;
+
+    // add sirius to the screen
+
 
     // add player to the screen
     var sprite = assetManager.getSprite("assets");
@@ -147,12 +152,20 @@ var Player = function (assetManager, stage, myX, myY) {
         velY = myVelY;
     };
 
+    this.getPhysical = function () {
+        return getPhysical;
+    };
+
+    this.getPhysical = function (value) {
+        getPhysical = value;
+    };
+
     // ---------------------------------- public methods
     this.showMe = function () {
         // do other stuff here that needs to be done when screen becomes visible
         // ....
 
-        timer = window.setInterval(timerTester, 3000);
+        timer = window.setInterval(timerTester, timerTimeout);
 
 
         stage.addChild(screen);
@@ -214,7 +227,9 @@ var Player = function (assetManager, stage, myX, myY) {
                 }
             }
         }
+    };
 
+    this.updateMe = function () {
         var dimensions = sprite.getBounds();
         //collision test with walls
         if (sprite.x < 0 /* left  */ ) {
@@ -226,7 +241,6 @@ var Player = function (assetManager, stage, myX, myY) {
         } else if (sprite.y > 600 /*bottom */ ) {
             sprite.y = 600 - (dimensions.height) / 2;
         }
-
     };
 
     this.resetKeys = function () {
@@ -278,37 +292,21 @@ var Player = function (assetManager, stage, myX, myY) {
         stopMe();
     }
 
-    function brokenPhysics(e) {
-        var ary = [];
-
-        while (ary.length < 4) {
-            var randomnumber = Math.ceil(Math.random() * 4);
-            if (ary.indexOf(randomnumber) > -1) continue;
-            ary[ary.length] = randomnumber;
-        }
-
-        for (var i = 0; i < 4; i++) {
-            switch (ary[i]) {
-            case 1:
-                console.log("I'm a 1");
-                break;
-            case 2:
-                console.log("I'm a 2");
-                break;
-            case 3:
-                console.log("I'm a 3");
-                break;
-            default:
-                console.log("I'm a 4");
-            }
-        }
-    }
-
     function timerTester(e) {
         console.log("Boop!");
-    }
-};
 
+        if (compass[i].getControls()) {
+            getPhysical = false;
+            window.clearInterval(timerTimeout);
+            slowDownTimer = window.setInterval(timerTester, timerTimeout);
+        } else {
+            getPhysical = true;
+            window.clearInterval(timerTimeout);
+            slowDownTimer = window.setInterval(timerTester, timerTimeout);
+        }
+    }
+
+};
 
 // static constant hacking by adding them on as properties of a generic object
 var MoverDirection = {

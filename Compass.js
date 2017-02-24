@@ -18,6 +18,7 @@ var Compass = function (stage, assetManager, player) {
 
     // is the compass currently being used?
     var active = false;
+    var controls = false;
 
     // construct sprite for this object and add to stage
     var sprite = assetManager.getSprite("assets");
@@ -35,6 +36,14 @@ var Compass = function (stage, assetManager, player) {
 
     this.setActive = function (value) {
         active = value;
+    };
+
+    this.getControls = function() {
+        return controls;
+    };
+
+    this.setControls = function(value) {
+        controls = value;
     };
 
     // ---------------------------------------------- public methods
@@ -77,6 +86,7 @@ var Compass = function (stage, assetManager, player) {
         sprite.gotoAndPlay("walkRight");
         //onCollected is not being called
         sprite.addEventListener("animationend", onCollected);
+        controls = true;
     }
 
     function onCollected(e) {
