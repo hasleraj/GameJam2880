@@ -30,6 +30,9 @@
     var contentScreen = null;
     var instructionScreen = null;
 
+    //add in background
+    var background = null;
+
     // ------------------------------------------------------------ event handlers
     function onInit() {
         console.log(">> initializing");
@@ -54,6 +57,11 @@
     function onSetup(e) {
         console.log(">> adding sprites to game");
         stage.removeEventListener("onAllAssetsLoaded", onSetup);
+
+        // construct game objects
+        background = assetManager.getSprite("assets");
+        background.gotoAndStop("backgroundTwo");
+        stage.addChild(background);
 
         introScreen = new IntroScreen(assetManager, stage);
         contentScreen = new ContentScreen(assetManager, stage);
