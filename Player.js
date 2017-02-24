@@ -268,7 +268,6 @@ var Player = function (assetManager, stage, myX, myY) {
     };
 
     // ------------------------------------ event handlers
-
     function onKeyPress(e) {
 
         if (e.keyCode == 87) {
