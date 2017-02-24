@@ -217,13 +217,13 @@ var Player = function (assetManager, stage, myX, myY) {
         var dimensions = sprite.getBounds();
         //collision test with walls
         if (sprite.x < 0 /* left  */ ) {
-            sprite.x = 0;
+            sprite.x = (dimensions.width) / 2;
         } else if (sprite.x > 600 /* right */ ) {
-            sprite.x = 600;
-        } else if (sprite.y < 0) {
-            sprite.y = 0;
-        } else if (sprite.y > 600) {
-            sprite.y = 600;
+            sprite.x = 600 - ((dimensions.width) / 2);
+        } else if (sprite.y < 0 /* top */ ) {
+            sprite.y = (dimensions.height) / 2;
+        } else if (sprite.y > 600 /*bottom */ ) {
+            sprite.y = 600 - (dimensions.height) / 2;
         }
 
     };

@@ -83,7 +83,7 @@ var Fireball = function (stage, assetManager, player) {
         var c = Math.sqrt((a * a) + (b * b));
 
         if (c <= 25) {
-            console.log("collision!");
+            console.log("collision with fireball!");
             sprite.dispatchEvent(eventPlayerBurned);
             onKillMe();
         }
