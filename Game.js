@@ -76,6 +76,8 @@
 
 
         stage.addEventListener("introFinished", onIntroFinished);
+        stage.addEventListener("instructionFinished", onInstructionFinished);
+
 
         console.log(">> main screen ready");
     }
@@ -91,15 +93,18 @@
     function onIntroFinished(e) {
         console.log("intro is finished");
         if (e.buttonNumber === 1) {
-            console.log("heading to content screen");
             introScreen.hideMe();
             contentScreen.showMe();
-
-        } else {
-            console.log("heading to content screen");
-
+        } else if (e.buttonNumber === 2) {
             introScreen.hideMe();
             instructionScreen.showMe();
+        }
+    }
+
+    function onInstructionFinished(e) {
+        if (e.buttonNumber === 0) {
+            introScreen.showMe();
+            instructionScreen.hideMe();
         }
     }
 
