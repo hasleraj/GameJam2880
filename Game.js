@@ -162,6 +162,10 @@
             if (fireballPool[n].getActive()) fireballPool[n].updateMe();
         }
 
+        for (var n = 0; n < compassPool.length; n++) {
+            if (compassPool[n].getActive()) compassPool[n].updateMe();
+        }
+
         entity.update();
         entity.updateMe();
         // update the stage!
