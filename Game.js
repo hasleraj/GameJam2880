@@ -57,7 +57,7 @@
         // set canvas to as wide/high as the browser window
         canvas.width = 600;
         canvas.height = 600;
-        canvas.style.backgroundColor = "#CC0099";
+        canvas.style.backgroundColor = "#395D33";
         // create stage object
         stage = new createjs.Stage(canvas);
 
@@ -163,7 +163,7 @@
             if (fireballPool[n].getActive()) fireballPool[n].updateMe();
         }
 
-        for (var k = 0; k < compassPool.length; n++) {
+        for (var k = 0; k < compassPool.length; k++) {
             if (compassPool[k].getActive()) compassPool[k].updateMe();
         }
 
