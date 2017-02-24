@@ -6,6 +6,7 @@
 /* globals manifest */
 /*globals Player */
 /* globals Fireball */
+/* globals Compass */
 
 (function () {
     "use strict";
@@ -87,7 +88,7 @@
         }
 
         // compass object pooling - constructing compass objects
-        for (var i = 0; i < compassMax; i++) {
+        for (var j = 0; j < compassMax; j++) {
             compassPool.push(new Compass(stage, assetManager, entity));
         }
 
@@ -162,8 +163,8 @@
             if (fireballPool[n].getActive()) fireballPool[n].updateMe();
         }
 
-        for (var n = 0; n < compassPool.length; n++) {
-            if (compassPool[n].getActive()) compassPool[n].updateMe();
+        for (var k = 0; k < compassPool.length; n++) {
+            if (compassPool[k].getActive()) compassPool[k].updateMe();
         }
 
         entity.update();
