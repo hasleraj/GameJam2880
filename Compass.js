@@ -21,7 +21,7 @@ var Compass = function (stage, assetManager, player) {
 
     // construct sprite for this object and add to stage
     var sprite = assetManager.getSprite("assets");
-    sprite.gotoAndStop("walkRight");
+    sprite.gotoAndPlay("walkRight");
 
 
     // --------------------------------------------- private methods
@@ -44,38 +44,29 @@ var Compass = function (stage, assetManager, player) {
         // get bounds of sprite so we can determine width / height
         var dimensions = sprite.getBounds();
 
-        // compass starts on left or right of stage
-        if (randomMe(1, 2) == 1) {
-            // move right
-            sprite.x = randomMe(50, 550);
-            sprite.y = randomMe(50, 550);
-            sprite.rotation = randomMe(45, -45);
-        } else {
-            // move left
-            sprite.x = randomMe(50, 550);
-            sprite.y = randomMe(50, 550);
-            sprite.rotation = randomMe(135, 225);
-        }
+        sprite.x = randomMe(50, 550);
+        sprite.y = randomMe(50, 550);
+        sprite.rotation = randomMe(45, -45);
+
     };
 
     this.releaseMe = function () {
         //fire startMe again to take the new rotation of the compass
-        sprite.gotoAndStop("walkRight");
+        sprite.gotoAndPlay("walkRight");
 
         stage.addChild(sprite);
 
     };
 
     this.updateMe = function () {
-
         // Calculate difference between centers
         var a = playerSprite.x - sprite.x;
         var b = playerSprite.y - sprite.y;
-        // Get distance with Pythagoras
+        // Get distance using Pythagorian theorem
         var c = Math.sqrt((a * a) + (b * b));
 
         if (c <= 25) {
-            console.log("collision!");
+            console.log("collision with compass!!");
             sprite.dispatchEvent(eventCompassCollected);
             onCollectMe();
         }
@@ -84,7 +75,8 @@ var Compass = function (stage, assetManager, player) {
     // ----------------------------------------------- event handlers
     function onCollectMe(e) {
         // play end sequence of compass
-        sprite.gotoAndStop("walkRight");
+        sprite.gotoAndPlay("walkRight");
+        //onCollected is not being called
         sprite.addEventListener("animationend", onCollected);
     }
 
@@ -94,7 +86,6 @@ var Compass = function (stage, assetManager, player) {
         sprite.removeAllEventListeners();
         // remove displayobject
         stage.removeChild(sprite);
-
         // put compass back in the pool
         active = false;
     }

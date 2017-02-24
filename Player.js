@@ -228,11 +228,6 @@ var Player = function (assetManager, stage, myX, myY) {
 
     };
 
-    //merge this with update above tmr
-    this.updateMe = function () {
-
-    };
-
 
     this.resetKeys = function () {
         var ary = [];
@@ -242,7 +237,6 @@ var Player = function (assetManager, stage, myX, myY) {
             if (ary.indexOf(randomnumber) > -1) continue;
             ary[ary.length] = randomnumber;
         }
-
 
         //getPhysical = true;
 

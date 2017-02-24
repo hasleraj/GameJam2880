@@ -28,14 +28,14 @@
     var fireballTimer = null;
     var fireballDelay = 0;
     // object pooling
-    var fireballMax = 50;
+    var fireballMax = 10;
     var fireballPool = [];
 
     // compass timer to add gameplay
     var compassTimer = null;
     var compassDelay = 0;
     // object pooling
-    var compassMax = 50;
+    var compassMax = 10;
     var compassPool = [];
 
     // ------------------------------------------------------------ private methods
@@ -103,6 +103,15 @@
 
     }
 
+    function onGamePlay(e) {
+        // construct and setup fireballtimer to drop fireballs on display list
+        fireballDelay = 500;
+        fireballTimer = window.setInterval(onAddFireball, fireballDelay);
+
+        compassDelay = 500;
+        compassTimer = window.setInterval(onAddCompass, compassDelay);
+    }
+
     function onGameOver(e) {
         // gameOver
         clearInterval(fireballTimer);
@@ -110,6 +119,12 @@
     }
 
     function onAddFireball(e) {
+        if (fireballPool.length === 0) {
+            //repopulate fireball pool if there's none left
+            for (var a = 0; a < fireballMax; a++) {
+                fireballPool.push(new Fireball(stage, assetManager, entity));
+            }
+        }
         // find fireball in pool and add to game
         for (var i = 0; i < fireballPool.length; i++) {
             var newFireball = fireballPool[i];
@@ -149,7 +164,6 @@
         }
 
         entity.update();
-        entity.updateMe();
         // update the stage!
         stage.update();
     }
