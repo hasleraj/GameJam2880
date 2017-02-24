@@ -115,7 +115,6 @@
     function onGameOver(e) {
         // gameOver
         clearInterval(fireballTimer);
-
     }
 
     function onAddFireball(e) {
