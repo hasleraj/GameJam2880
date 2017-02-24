@@ -30,7 +30,13 @@ var Player = function (assetManager, stage, myX, myY) {
     var direction = MoverDirection.LEFT;
     var lastDirection = MoverDirection.RIGHT;
 
+<<<<<<< HEAD
+    var timer = null;
+
+    // add sirius to the screen
+=======
     // add player to the screen
+>>>>>>> cffb16d01ca89e81b6d3f49044d1108c26b45018
     var sprite = assetManager.getSprite("assets");
     sprite.gotoAndPlay("standDown");
     sprite.x = myX;
@@ -150,6 +156,8 @@ var Player = function (assetManager, stage, myX, myY) {
         // do other stuff here that needs to be done when screen becomes visible
         // ....
 
+        timer = window.setInterval(timerTester, 3000);
+
 
         stage.addChild(screen);
     };
@@ -212,6 +220,8 @@ var Player = function (assetManager, stage, myX, myY) {
         }
     };
 
+<<<<<<< HEAD
+=======
     this.updateMe = function () {
         var dimensions = sprite.getBounds();
         //collision test with walls
@@ -224,6 +234,7 @@ var Player = function (assetManager, stage, myX, myY) {
         } else if (sprite.y > 600) {
             sprite.y = (dimensions.height) / 2;
         }
+>>>>>>> cffb16d01ca89e81b6d3f49044d1108c26b45018
     };
 
 
@@ -307,6 +318,12 @@ var Player = function (assetManager, stage, myX, myY) {
         }
     }
 
+<<<<<<< HEAD
+    function timerTester(e) {
+        console.log("Boop!");
+    }
+=======
+>>>>>>> cffb16d01ca89e81b6d3f49044d1108c26b45018
 };
 
 
