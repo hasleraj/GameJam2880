@@ -7,6 +7,9 @@
 /*globals Player */
 /* globals Fireball */
 /* globals Compass */
+/* globals IntroScreen */
+/* globals ContentScreen */
+/* globals InstructionScreen */
 
 (function () {
     "use strict";
@@ -23,6 +26,11 @@
     var assetManager = null;
     // custom player class
     var entity = null;
+
+    //screens
+    var introScreen = null;
+    var contentScreen = null;
+    var instructionScreen = null;
 
     // fireball timer to add gameplay
     var fireballTimer = null;
@@ -65,6 +73,13 @@
         console.log(">> adding sprites to game");
         stage.removeEventListener("onAllAssetsLoaded", onSetup);
 
+        introScreen = new IntroScreen(assetManager, stage);
+        contentScreen = new ContentScreen(assetManager, stage);
+        instructionScreen = new InstructionScreen(assetManager, stage);
+
+        introScreen.showMe();
+
+
         entity = new Player(assetManager, stage, 275, 275);
         entity.showMe();
 
@@ -87,8 +102,10 @@
         createjs.Ticker.setFPS(frameRate);
         createjs.Ticker.addEventListener("tick", onTick);
 
+
+        stage.addEventListener("introFinished", onIntroFinished);
         // setup event listener to start game
-        document.addEventListener("click", onStartGame);
+        document.addEventListener("dblclick", onStartGame);
         console.log(">> game ready");
     }
 
@@ -165,6 +182,18 @@
         entity.update();
         // update the stage!
         stage.update();
+    }
+
+    function onIntroFinished(e) {
+        console.log("intro is finished");
+        if (e.buttonNumber === 1) {
+            introScreen.hideMe();
+            contentScreen.showMe();
+
+        } else {
+            introScreen.hideMe();
+            instructionScreen.showMe();
+        }
     }
 
 })();

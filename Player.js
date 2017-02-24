@@ -33,7 +33,7 @@ var Player = function (assetManager, stage, myX, myY) {
     var lastDirection = MoverDirection.RIGHT;
 
     var timer = null;
-    var timerTimeout = 3000;
+    var timerTimeout = 5000;
 
     // add sirius to the screen
 
@@ -301,8 +301,8 @@ var Player = function (assetManager, stage, myX, myY) {
     }
 
     function timerTester(e) {
-        console.log("Boop!");
-        getPhysical = true;
+        //console.log("Boop!");
+        //getPhysical = true;
 
     }
 

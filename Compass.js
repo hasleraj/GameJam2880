@@ -38,11 +38,11 @@ var Compass = function (stage, assetManager, player) {
         active = value;
     };
 
-    this.getControls = function() {
+    this.getControls = function () {
         return controls;
     };
 
-    this.setControls = function(value) {
+    this.setControls = function (value) {
         controls = value;
     };
 
@@ -67,14 +67,15 @@ var Compass = function (stage, assetManager, player) {
     };
 
     this.updateMe = function () {
+        var dimensions = sprite.getBounds();
+
         // Calculate difference between centers
         var a = playerSprite.x - sprite.x;
         var b = playerSprite.y - sprite.y;
         // Get distance using Pythagorian theorem
         var c = Math.sqrt((a * a) + (b * b));
 
-        if (c <= 25) {
-            console.log("collision with compass!!");
+        if (c <= 51) {
             sprite.dispatchEvent(eventCompassCollected);
             onCollectMe();
         }

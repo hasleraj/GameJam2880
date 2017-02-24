@@ -71,6 +71,8 @@ var Fireball = function (stage, assetManager, player) {
     };
 
     this.updateMe = function () {
+        var dimensions = sprite.getBounds();
+
         // if fireball not moving then nothing to update!
         if ((!spriteMover.getMoving())) return;
 
@@ -79,11 +81,11 @@ var Fireball = function (stage, assetManager, player) {
         // Calculate difference between centers
         var a = playerSprite.x - sprite.x;
         var b = playerSprite.y - sprite.y;
+
         // Get distance using Pythagorian theorem
         var c = Math.sqrt((a * a) + (b * b));
 
-        if (c <= 25) {
-            console.log("collision with fireball!");
+        if (c <= 65) {
             sprite.dispatchEvent(eventPlayerBurned);
             onKillMe();
         }
