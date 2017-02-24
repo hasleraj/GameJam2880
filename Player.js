@@ -4,10 +4,12 @@
 /*jshint esversion: 6 */
 /*globals AssetManager */
 /* globals manifest */
+
 var Player = function (assetManager, stage, myX, myY) {
     "use strict";
     // custom event
     var eventScreenComplete = new createjs.Event("contentFinished");
+
 
 
     // construct container object
@@ -31,6 +33,10 @@ var Player = function (assetManager, stage, myX, myY) {
     var lastDirection = MoverDirection.RIGHT;
 
     var timer = null;
+    var timerTimeout = 3000;
+
+    // add sirius to the screen
+
 
     // add player to the screen
     var sprite = assetManager.getSprite("assets");
@@ -146,12 +152,20 @@ var Player = function (assetManager, stage, myX, myY) {
         velY = myVelY;
     };
 
+    this.getPhysical = function () {
+        return getPhysical;
+    };
+
+    this.getPhysical = function (value) {
+        getPhysical = value;
+    };
+
     // ---------------------------------- public methods
     this.showMe = function () {
         // do other stuff here that needs to be done when screen becomes visible
         // ....
 
-        timer = window.setInterval(timerTester, 3000);
+        timer = window.setInterval(timerTester, timerTimeout);
 
 
         stage.addChild(screen);
@@ -165,13 +179,10 @@ var Player = function (assetManager, stage, myX, myY) {
         monitorKeys();
         sprite.x += velX;
         sprite.y += velY;
-
-
         if (moving) {
             // get current width of sprite on this frame
             // we only need to concern ourselves with width in terms of off stage since we rotate sprite up, down, left, and right
             var width = sprite.getBounds().width;
-
             if (direction == MoverDirection.LEFT) {
                 // moving left
                 sprite.scaleX = 1;
@@ -179,9 +190,8 @@ var Player = function (assetManager, stage, myX, myY) {
                 sprite.x = sprite.x - speed;
                 if (sprite.x < -width) {
                     sprite.x = stage.canvas.width;
-                    sprite.dispatchEvent(eventOffStage);
+                    sprite.dispatchEvent(eventScreenComplete);
                 }
-
             } else if (direction == MoverDirection.RIGHT) {
                 // moving right
                 sprite.scaleX = -1;
@@ -189,9 +199,8 @@ var Player = function (assetManager, stage, myX, myY) {
                 sprite.x = sprite.x + speed;
                 if (sprite.x > (stage.canvas.width + width)) {
                     sprite.x = -width;
-                    sprite.dispatchEvent(eventOffStage);
+                    sprite.dispatchEvent(eventScreenComplete);
                 }
-
             } else if (direction == MoverDirection.UP) {
                 // moving up
                 sprite.scaleX = 1;
@@ -199,9 +208,8 @@ var Player = function (assetManager, stage, myX, myY) {
                 sprite.y = sprite.y - speed;
                 if (sprite.y < -width) {
                     sprite.y = stage.canvas.height;
-                    sprite.dispatchEvent(eventOffStage);
+                    sprite.dispatchEvent(eventScreenComplete);
                 }
-
             } else if (direction == MoverDirection.DOWN) {
                 // moving down
                 sprite.scaleX = 1;
@@ -209,30 +217,36 @@ var Player = function (assetManager, stage, myX, myY) {
                 sprite.y = sprite.y + speed;
                 if (sprite.y > (stage.canvas.height + width)) {
                     sprite.y = -width;
-                    sprite.dispatchEvent(eventOffStage);
+                    sprite.dispatchEvent(eventScreenComplete);
                 }
             }
         }
-
         var dimensions = sprite.getBounds();
         //collision test with walls
         if (sprite.x < 0 /* left  */ ) {
-            sprite.x = 0;
+            sprite.x = (dimensions.width) / 2;
         } else if (sprite.x > 600 /* right */ ) {
-            sprite.x = 600;
-        } else if (sprite.y < 0) {
-            sprite.y = 0;
-        } else if (sprite.y > 600) {
-            sprite.y = 600;
+            sprite.x = 600 - ((dimensions.width) / 2);
+        } else if (sprite.y < 0 /* top */ ) {
+            sprite.y = (dimensions.height) / 2;
+        } else if (sprite.y > 600 /*bottom */ ) {
+            sprite.y = 600 - (dimensions.height) / 2;
         }
-
     };
 
-    //merge this with update above tmr
     this.updateMe = function () {
-
+        var dimensions = sprite.getBounds();
+        //collision test with walls
+        if (sprite.x < 0 /* left  */ ) {
+            sprite.x = (dimensions.width) / 2;
+        } else if (sprite.x > 600 /* right */ ) {
+            sprite.x = 600 - ((dimensions.width) / 2);
+        } else if (sprite.y < 0 /* top */ ) {
+            sprite.y = (dimensions.height) / 2;
+        } else if (sprite.y > 600 /*bottom */ ) {
+            sprite.y = 600 - (dimensions.height) / 2;
+        }
     };
-
 
     this.resetKeys = function () {
         var ary = [];
@@ -243,21 +257,22 @@ var Player = function (assetManager, stage, myX, myY) {
             ary[ary.length] = randomnumber;
         }
 
-
         //getPhysical = true;
 
         return ary;
     };
 
+    this.resetTimer = function () {
+        window.clearInterval(timerTimeout);
+        timer = window.setInterval(timerTester, timerTimeout);
+    };
+
     // ------------------------------------ event handlers
-
-
     function onKeyPress(e) {
 
         if (e.keyCode == 87) {
             upKey = true;
         }
-
         if (e.keyCode == 65) {
             leftKey = true;
         }
@@ -267,7 +282,6 @@ var Player = function (assetManager, stage, myX, myY) {
         if (e.keyCode == 83) {
             downKey = true;
         }
-
         if (e.keyCode == 39) {
 
         }
@@ -286,39 +300,13 @@ var Player = function (assetManager, stage, myX, myY) {
         stopMe();
     }
 
-    function brokenPhysics(e) {
-        var ary = [];
-
-        while (ary.length < 4) {
-            var randomnumber = Math.ceil(Math.random() * 4);
-            if (ary.indexOf(randomnumber) > -1) continue;
-            ary[ary.length] = randomnumber;
-        }
-
-        console.log(ary);
-
-        for (var i = 0; i < 4; i++) {
-            switch (ary[i]) {
-            case 1:
-                console.log("I'm a 1");
-                break;
-            case 2:
-                console.log("I'm a 2");
-                break;
-            case 3:
-                console.log("I'm a 3");
-                break;
-            default:
-                console.log("I'm a 4");
-            }
-        }
-    }
-
     function timerTester(e) {
         console.log("Boop!");
-    }
-};
+        getPhysical = false;
 
+    }
+
+};
 
 // static constant hacking by adding them on as properties of a generic object
 var MoverDirection = {
