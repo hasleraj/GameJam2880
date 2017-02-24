@@ -87,6 +87,8 @@ var Compass = function (stage, assetManager, player) {
         sprite.gotoAndPlay("walkRight");
         //onCollected is not being called
         sprite.addEventListener("animationend", onCollected);
+
+        // compass set the character controls to default
         player.setPhysical(false);
         player.resetTimer();
     }
