@@ -302,10 +302,7 @@ var Player = function (assetManager, stage, myX, myY) {
 
     function timerTester(e) {
         console.log("Boop!");
-
         getPhysical = false;
-        window.clearInterval(timerTimeout);
-        timer = window.setInterval(timerTester, timerTimeout);
 
     }
 
