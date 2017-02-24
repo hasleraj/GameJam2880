@@ -40,7 +40,7 @@ var Player = function (assetManager, stage, myX, myY) {
 
     // add player to the screen
     var sprite = assetManager.getSprite("assets");
-    sprite.gotoAndPlay("standDown");
+    sprite.gotoAndStop("walkDownC");
     sprite.x = myX;
     sprite.y = myY;
     sprite.regX = sprite.getBounds().width / 2;
@@ -95,7 +95,7 @@ var Player = function (assetManager, stage, myX, myY) {
                 direction = MoverDirection.LEFT;
             }
 
-            sprite.gotoAndStop("walkLeft");
+            sprite.gotoAndStop("walkLeftC");
             startMe();
 
         } else if (rightKey && !moving) {
@@ -105,7 +105,7 @@ var Player = function (assetManager, stage, myX, myY) {
                 direction = MoverDirection.RIGHT;
             }
 
-            sprite.gotoAndStop("walkLeft");
+            sprite.gotoAndStop("walkLeftC");
             startMe();
 
         } else if (downKey && !moving) {
@@ -115,7 +115,7 @@ var Player = function (assetManager, stage, myX, myY) {
                 direction = MoverDirection.DOWN;
             }
 
-            sprite.gotoAndStop("walkDown");
+            sprite.gotoAndStop("walkDownC");
             startMe();
 
         } else if (upKey && !moving) {
@@ -125,7 +125,7 @@ var Player = function (assetManager, stage, myX, myY) {
                 direction = MoverDirection.UP;
             }
 
-            sprite.gotoAndStop("walkUp");
+            sprite.gotoAndStop("walkUpC");
             startMe();
         }
     }
