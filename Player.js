@@ -229,7 +229,6 @@ var Player = function (assetManager, stage, myX, myY) {
 
     };
 
-
     this.resetKeys = function () {
         var ary = [];
 
@@ -245,7 +244,6 @@ var Player = function (assetManager, stage, myX, myY) {
     };
 
     // ------------------------------------ event handlers
-
 
     function onKeyPress(e) {
 
@@ -289,8 +287,6 @@ var Player = function (assetManager, stage, myX, myY) {
             if (ary.indexOf(randomnumber) > -1) continue;
             ary[ary.length] = randomnumber;
         }
-
-        console.log(ary);
 
         for (var i = 0; i < 4; i++) {
             switch (ary[i]) {

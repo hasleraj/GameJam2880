@@ -23,7 +23,6 @@ var Compass = function (stage, assetManager, player) {
     var sprite = assetManager.getSprite("assets");
     sprite.gotoAndPlay("walkRight");
 
-
     // --------------------------------------------- private methods
     function randomMe(low, high) {
         return Math.round(Math.random() * (high - low)) + low;
