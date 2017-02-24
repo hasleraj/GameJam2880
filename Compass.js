@@ -21,8 +21,7 @@ var Compass = function (stage, assetManager, player) {
 
     // construct sprite for this object and add to stage
     var sprite = assetManager.getSprite("assets");
-    sprite.gotoAndPlay("walkRight");
-    var spriteMover = new MoverDiagonal(sprite, stage);
+    sprite.gotoAndStop("walkRight");
 
 
     // --------------------------------------------- private methods
@@ -41,8 +40,6 @@ var Compass = function (stage, assetManager, player) {
 
     // ---------------------------------------------- public methods
     this.setupMe = function () {
-        // random selection of speed of compass
-        spriteMover.setSpeed(randomMe(2, 6));
 
         // get bounds of sprite so we can determine width / height
         var dimensions = sprite.getBounds();
@@ -50,31 +47,26 @@ var Compass = function (stage, assetManager, player) {
         // compass starts on left or right of stage
         if (randomMe(1, 2) == 1) {
             // move right
-            sprite.x = -dimensions.width;
+            sprite.x = randomMe(50, 550);
             sprite.y = randomMe(50, 550);
             sprite.rotation = randomMe(45, -45);
         } else {
             // move left
-            sprite.x = stage.canvas.width + dimensions.width;
+            sprite.x = randomMe(50, 550);
             sprite.y = randomMe(50, 550);
             sprite.rotation = randomMe(135, 225);
         }
     };
 
     this.releaseMe = function () {
-        // fire startMe again to take the new rotation of the compass
-        sprite.gotoAndPlay("walkRight");
-        spriteMover.startMe();
+        //fire startMe again to take the new rotation of the compass
+        sprite.gotoAndStop("walkRight");
 
         stage.addChild(sprite);
 
     };
 
     this.updateMe = function () {
-        // if compass not moving then nothing to update!
-        if ((!spriteMover.getMoving())) return;
-
-        spriteMover.update();
 
         // Calculate difference between centers
         var a = playerSprite.x - sprite.x;
@@ -91,9 +83,8 @@ var Compass = function (stage, assetManager, player) {
 
     // ----------------------------------------------- event handlers
     function onCollectMe(e) {
-        spriteMover.stopMe();
-        // play death sequence of compass
-        sprite.gotoAndPlay("walkRight");
+        // play end sequence of compass
+        sprite.gotoAndStop("walkRight");
         sprite.addEventListener("animationend", onCollected);
     }
 
