@@ -22,7 +22,7 @@ var Compass = function (stage, assetManager, player) {
 
     // construct sprite for this object and add to stage
     var sprite = assetManager.getSprite("assets");
-    sprite.gotoAndPlay("walkRight");
+    sprite.gotoAndPlay("compass");
 
     // --------------------------------------------- private methods
     function randomMe(low, high) {
@@ -60,7 +60,7 @@ var Compass = function (stage, assetManager, player) {
 
     this.releaseMe = function () {
         //fire startMe again to take the new rotation of the compass
-        sprite.gotoAndPlay("walkRight");
+        sprite.gotoAndPlay("compass");
 
         stage.addChild(sprite);
 
@@ -84,7 +84,7 @@ var Compass = function (stage, assetManager, player) {
     // ----------------------------------------------- event handlers
     function onCollectMe(e) {
         // play end sequence of compass
-        sprite.gotoAndPlay("walkRight");
+        sprite.gotoAndPlay("compass");
         //onCollected is not being called
         sprite.addEventListener("animationend", onCollected);
 

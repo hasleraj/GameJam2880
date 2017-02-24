@@ -25,7 +25,6 @@
     // game objects
     var assetManager = null;
 
-
     //screens
     var introScreen = null;
     var contentScreen = null;
