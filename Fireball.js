@@ -60,7 +60,7 @@ var Fireball = function (stage, assetManager, player) {
             sprite.rotation = randomMe(135, 225);
         }
 
-        sprite.addEventListener("onStageDiagonal", onKillMe);
+        sprite.addEventListener("onStageExitDiagonal", onKillMe);
     };
 
     this.releaseMe = function () {
