@@ -46,7 +46,6 @@ var Player = function (assetManager, stage, myX, myY) {
 
 
     // ------------------------------------ private methods
-
     function setVelX(myVelocityX) {
         velX = myVelocityX;
     }
@@ -214,9 +213,7 @@ var Player = function (assetManager, stage, myX, myY) {
                 }
             }
         }
-    };
 
-    this.updateMe = function () {
         var dimensions = sprite.getBounds();
         //collision test with walls
         if (sprite.x < 0 /* left  */ ) {
@@ -226,8 +223,14 @@ var Player = function (assetManager, stage, myX, myY) {
         } else if (sprite.y < 0) {
             sprite.y = 0;
         } else if (sprite.y > 600) {
-            sprite.y = (dimensions.height) / 2;
+            sprite.y = 600;
         }
+
+    };
+
+    //merge this with update above tmr
+    this.updateMe = function () {
+
     };
 
 

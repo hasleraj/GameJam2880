@@ -2,7 +2,7 @@
 /*jshint browser:true */
 /*jshint devel:true */
 /*jshint esversion: 6 */
-/* globals MoverDiagonal */
+/*globals MoverDiagonal */
 var Fireball = function (stage, assetManager, player) {
     "use strict";
 
