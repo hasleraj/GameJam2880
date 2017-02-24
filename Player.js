@@ -179,13 +179,10 @@ var Player = function (assetManager, stage, myX, myY) {
         monitorKeys();
         sprite.x += velX;
         sprite.y += velY;
-
-
         if (moving) {
             // get current width of sprite on this frame
             // we only need to concern ourselves with width in terms of off stage since we rotate sprite up, down, left, and right
             var width = sprite.getBounds().width;
-
             if (direction == MoverDirection.LEFT) {
                 // moving left
                 sprite.scaleX = 1;
@@ -195,7 +192,6 @@ var Player = function (assetManager, stage, myX, myY) {
                     sprite.x = stage.canvas.width;
                     sprite.dispatchEvent(eventScreenComplete);
                 }
-
             } else if (direction == MoverDirection.RIGHT) {
                 // moving right
                 sprite.scaleX = -1;
@@ -205,7 +201,6 @@ var Player = function (assetManager, stage, myX, myY) {
                     sprite.x = -width;
                     sprite.dispatchEvent(eventScreenComplete);
                 }
-
             } else if (direction == MoverDirection.UP) {
                 // moving up
                 sprite.scaleX = 1;
@@ -215,7 +210,6 @@ var Player = function (assetManager, stage, myX, myY) {
                     sprite.y = stage.canvas.height;
                     sprite.dispatchEvent(eventScreenComplete);
                 }
-
             } else if (direction == MoverDirection.DOWN) {
                 // moving down
                 sprite.scaleX = 1;
@@ -226,6 +220,17 @@ var Player = function (assetManager, stage, myX, myY) {
                     sprite.dispatchEvent(eventScreenComplete);
                 }
             }
+        }
+        var dimensions = sprite.getBounds();
+        //collision test with walls
+        if (sprite.x < 0 /* left  */ ) {
+            sprite.x = (dimensions.width) / 2;
+        } else if (sprite.x > 600 /* right */ ) {
+            sprite.x = 600 - ((dimensions.width) / 2);
+        } else if (sprite.y < 0 /* top */ ) {
+            sprite.y = (dimensions.height) / 2;
+        } else if (sprite.y > 600 /*bottom */ ) {
+            sprite.y = 600 - (dimensions.height) / 2;
         }
     };
 
@@ -257,6 +262,11 @@ var Player = function (assetManager, stage, myX, myY) {
         return ary;
     };
 
+    this.resetTimer = function () {
+        window.clearInterval(timerTimeout);
+        timer = window.setInterval(timerTester, timerTimeout);
+    };
+
     // ------------------------------------ event handlers
 
     function onKeyPress(e) {
@@ -264,7 +274,6 @@ var Player = function (assetManager, stage, myX, myY) {
         if (e.keyCode == 87) {
             upKey = true;
         }
-
         if (e.keyCode == 65) {
             leftKey = true;
         }
@@ -274,7 +283,6 @@ var Player = function (assetManager, stage, myX, myY) {
         if (e.keyCode == 83) {
             downKey = true;
         }
-
         if (e.keyCode == 39) {
 
         }
@@ -296,15 +304,10 @@ var Player = function (assetManager, stage, myX, myY) {
     function timerTester(e) {
         console.log("Boop!");
 
-        if (compass[i].getControls()) {
-            getPhysical = false;
-            window.clearInterval(timerTimeout);
-            slowDownTimer = window.setInterval(timerTester, timerTimeout);
-        } else {
-            getPhysical = true;
-            window.clearInterval(timerTimeout);
-            slowDownTimer = window.setInterval(timerTester, timerTimeout);
-        }
+        getPhysical = false;
+        window.clearInterval(timerTimeout);
+        timer = window.setInterval(timerTester, timerTimeout);
+
     }
 
 };
