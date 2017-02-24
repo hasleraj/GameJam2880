@@ -169,6 +169,10 @@ var Player = function (assetManager, stage, myX, myY) {
         getPhysical = value;
     };
 
+    this.getLives = function() {
+        return lives;
+    };
+
     // ---------------------------------- public methods
     this.showMe = function () {
         // do other stuff here that needs to be done when screen becomes visible
@@ -274,6 +278,11 @@ var Player = function (assetManager, stage, myX, myY) {
     this.resetTimer = function () {
         window.clearInterval(timerTimeout);
         //timer = window.setInterval(timerTester, timerTimeout);
+    };
+
+    this.removeLives = function() {
+        lives = lives -1;
+        return lives;
     };
 
     // ------------------------------------ event handlers
