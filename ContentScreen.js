@@ -83,7 +83,7 @@ var ContentScreen = function (assetManager, stage) {
 
     function onStartGame(e) {
 
-        // construct and setup fireballtimer to drop fireballs on display list
+        // construct and setup timers to drop objects on display list
         fireballDelay = 500;
         fireballTimer = window.setInterval(onAddFireball, fireballDelay);
 
@@ -93,7 +93,7 @@ var ContentScreen = function (assetManager, stage) {
     }
 
     function onGamePlay(e) {
-        // construct and setup fireballtimer to drop fireballs on display list
+        // construct and setup timers to drop objects on display list
         fireballDelay = 500;
         fireballTimer = window.setInterval(onAddFireball, fireballDelay);
 
@@ -107,12 +107,6 @@ var ContentScreen = function (assetManager, stage) {
     }
 
     function onAddFireball(e) {
-        if (fireballPool.length === 0) {
-            //repopulate fireball pool if there's none left
-            for (var a = 0; a < fireballMax; a++) {
-                fireballPool.push(new Fireball(stage, assetManager, entity));
-            }
-        }
         // find fireball in pool and add to game
         for (var i = 0; i < fireballPool.length; i++) {
             var newFireball = fireballPool[i];
@@ -144,13 +138,18 @@ var ContentScreen = function (assetManager, stage) {
 
         // update all fireballs (their mover) in pool if active
         for (var n = 0; n < fireballPool.length; n++) {
-            if (fireballPool[n].getActive()) fireballPool[n].updateMe();
+            if (fireballPool[n].getActive()) {
+                fireballPool[n].updateMe();
+            }
         }
 
         for (var k = 0; k < compassPool.length; k++) {
-            if (compassPool[k].getActive()) compassPool[k].updateMe();
+            if (compassPool[k].getActive()) {
+                compassPool[k].updateMe();
+            }
         }
 
+        //update sprite
         entity.update();
         // update the stage!
         stage.update();

@@ -59,6 +59,8 @@ var Fireball = function (stage, assetManager, player) {
             sprite.y = randomMe(50, 550);
             sprite.rotation = randomMe(135, 225);
         }
+
+        sprite.addEventListener("onStageDiagonal", onKillMe);
     };
 
     this.releaseMe = function () {
@@ -105,6 +107,7 @@ var Fireball = function (stage, assetManager, player) {
         sprite.removeAllEventListeners();
         // remove displayobject
         stage.removeChild(sprite);
+        console.log("sprite is removed");
 
         // put fireball back in the pool
         active = false;
