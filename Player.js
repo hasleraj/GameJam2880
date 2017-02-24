@@ -10,6 +10,7 @@ var Player = function (assetManager, stage, myX, myY) {
     var eventScreenComplete = new createjs.Event("contentFinished");
 
 
+
     // construct container object
     var screen = new createjs.Container();
 
@@ -34,6 +35,7 @@ var Player = function (assetManager, stage, myX, myY) {
 
     // add sirius to the screen
 
+
     // add player to the screen
     var sprite = assetManager.getSprite("assets");
     sprite.gotoAndPlay("standDown");
@@ -48,7 +50,6 @@ var Player = function (assetManager, stage, myX, myY) {
 
 
     // ------------------------------------ private methods
-
     function setVelX(myVelocityX) {
         velX = myVelocityX;
     }
@@ -182,7 +183,7 @@ var Player = function (assetManager, stage, myX, myY) {
                 sprite.x = sprite.x - speed;
                 if (sprite.x < -width) {
                     sprite.x = stage.canvas.width;
-                    sprite.dispatchEvent(eventOffStage);
+                    sprite.dispatchEvent(eventScreenComplete);
                 }
 
             } else if (direction == MoverDirection.RIGHT) {
@@ -192,7 +193,7 @@ var Player = function (assetManager, stage, myX, myY) {
                 sprite.x = sprite.x + speed;
                 if (sprite.x > (stage.canvas.width + width)) {
                     sprite.x = -width;
-                    sprite.dispatchEvent(eventOffStage);
+                    sprite.dispatchEvent(eventScreenComplete);
                 }
 
             } else if (direction == MoverDirection.UP) {
@@ -202,7 +203,7 @@ var Player = function (assetManager, stage, myX, myY) {
                 sprite.y = sprite.y - speed;
                 if (sprite.y < -width) {
                     sprite.y = stage.canvas.height;
-                    sprite.dispatchEvent(eventOffStage);
+                    sprite.dispatchEvent(eventScreenComplete);
                 }
 
             } else if (direction == MoverDirection.DOWN) {
@@ -212,26 +213,24 @@ var Player = function (assetManager, stage, myX, myY) {
                 sprite.y = sprite.y + speed;
                 if (sprite.y > (stage.canvas.height + width)) {
                     sprite.y = -width;
-                    sprite.dispatchEvent(eventOffStage);
+                    sprite.dispatchEvent(eventScreenComplete);
                 }
             }
         }
-    };
 
     this.updateMe = function () {
         var dimensions = sprite.getBounds();
         //collision test with walls
         if (sprite.x < 0 /* left  */ ) {
-            sprite.x = 0;
+            sprite.x = (dimensions.width) / 2;
         } else if (sprite.x > 600 /* right */ ) {
-            sprite.x = 600;
-        } else if (sprite.y < 0) {
-            sprite.y = 0;
-        } else if (sprite.y > 600) {
+            sprite.x = 600 - ((dimensions.width) / 2);
+        } else if (sprite.y < 0 /* top */ ) {
             sprite.y = (dimensions.height) / 2;
+        } else if (sprite.y > 600 /*bottom */ ) {
+            sprite.y = 600 - (dimensions.height) / 2;
         }
     };
-
 
     this.resetKeys = function () {
         var ary = [];
@@ -242,14 +241,12 @@ var Player = function (assetManager, stage, myX, myY) {
             ary[ary.length] = randomnumber;
         }
 
-
         //getPhysical = true;
 
         return ary;
     };
 
     // ------------------------------------ event handlers
-
 
     function onKeyPress(e) {
 
@@ -294,8 +291,6 @@ var Player = function (assetManager, stage, myX, myY) {
             ary[ary.length] = randomnumber;
         }
 
-        console.log(ary);
-
         for (var i = 0; i < 4; i++) {
             switch (ary[i]) {
             case 1:
@@ -316,6 +311,8 @@ var Player = function (assetManager, stage, myX, myY) {
     function timerTester(e) {
         console.log("Boop!");
     }
+};
+};
 
 // static constant hacking by adding them on as properties of a generic object
 var MoverDirection = {

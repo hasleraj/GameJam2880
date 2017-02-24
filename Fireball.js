@@ -2,7 +2,7 @@
 /*jshint browser:true */
 /*jshint devel:true */
 /*jshint esversion: 6 */
-/* globals MoverDiagonal */
+/*globals MoverDiagonal */
 var Fireball = function (stage, assetManager, player) {
     "use strict";
 
@@ -79,11 +79,11 @@ var Fireball = function (stage, assetManager, player) {
         // Calculate difference between centers
         var a = playerSprite.x - sprite.x;
         var b = playerSprite.y - sprite.y;
-        // Get distance with Pythagoras
+        // Get distance using Pythagorian theorem
         var c = Math.sqrt((a * a) + (b * b));
 
         if (c <= 25) {
-            console.log("collision!");
+            console.log("collision with fireball!");
             sprite.dispatchEvent(eventPlayerBurned);
             onKillMe();
         }
