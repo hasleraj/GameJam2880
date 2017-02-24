@@ -48,6 +48,7 @@
         stage.addEventListener("onAllAssetsLoaded", onSetup);
         // load the assets
         assetManager.loadAssets(manifest);
+
     }
 
     function onSetup(e) {
@@ -59,6 +60,7 @@
         instructionScreen = new InstructionScreen(assetManager, stage);
 
         introScreen.showMe();
+        createjs.Sound.play("gameMusic");
 
         // startup the ticker
         createjs.Ticker.setFPS(frameRate);

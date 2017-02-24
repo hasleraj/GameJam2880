@@ -6,5 +6,10 @@ var manifest = [
     {
         src:"lib/assets.png",
         id:"assets"
+    },
+     {
+        src:"lib/gameMusic.ogg",
+        id:"gameMusic",
+        data:4
     }
 ];
