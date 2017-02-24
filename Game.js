@@ -24,13 +24,6 @@
     // custom player class
     var entity = null;
 
-    // keyboard variables
-    var downKey = false;
-    var upKey = false;
-    var leftKey = false;
-    var rightKey = false;
-    var moving = null;
-
     // fireball timer to add gameplay
     var fireballTimer = null;
     var fireballDelay = 0;
@@ -72,11 +65,6 @@
         console.log(">> adding sprites to game");
         stage.removeEventListener("onAllAssetsLoaded", onSetup);
 
-        downKey = false;
-        upKey = false;
-        leftKey = false;
-        rightKey = false;
-
         entity = new Player(assetManager, stage, 275, 275);
         entity.showMe();
 
@@ -112,12 +100,6 @@
 
         compassDelay = 500;
         compassTimer = window.setInterval(onAddCompass, compassDelay);
-
-        // current state of keys
-        leftKey = false;
-        rightKey = false;
-        upKey = false;
-        downKey = false;
 
     }
 
@@ -157,7 +139,6 @@
         // TESTING FPS
         document.getElementById("fps").innerHTML = createjs.Ticker.getMeasuredFPS();
 
-        // game loop code here
         // update all fireballs (their mover) in pool if active
         for (var n = 0; n < fireballPool.length; n++) {
             if (fireballPool[n].getActive()) fireballPool[n].updateMe();
