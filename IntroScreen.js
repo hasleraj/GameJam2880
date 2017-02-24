@@ -16,7 +16,7 @@ var IntroScreen = function (assetManager, stage) {
     btnPlay.gotoAndStop("walkRight");
     btnPlay.x = 120;
     btnPlay.y = 340;
-    btnPlay.buttonHelper = new createjs.ButtonHelper(btnPlay, "walkRight", "walkLeft", "walkLeft", false, hitAreaSprite, "hitArea");
+    btnPlay.buttonHelper = new createjs.ButtonHelper(btnPlay, "btnPlayUp", "btnPlayDown", "btnPlayDown", false, hitAreaSprite, "hitArea");
     screen.addChild(btnPlay);
     btnPlay.addEventListener("click", onClickPlay);
 
