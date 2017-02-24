@@ -10,6 +10,7 @@ var Player = function (assetManager, stage, myX, myY) {
     var eventScreenComplete = new createjs.Event("contentFinished");
 
 
+
     // construct container object
     var screen = new createjs.Container();
 
@@ -179,7 +180,7 @@ var Player = function (assetManager, stage, myX, myY) {
                 sprite.x = sprite.x - speed;
                 if (sprite.x < -width) {
                     sprite.x = stage.canvas.width;
-                    sprite.dispatchEvent(eventOffStage);
+                    sprite.dispatchEvent(eventScreenComplete);
                 }
 
             } else if (direction == MoverDirection.RIGHT) {
@@ -189,7 +190,7 @@ var Player = function (assetManager, stage, myX, myY) {
                 sprite.x = sprite.x + speed;
                 if (sprite.x > (stage.canvas.width + width)) {
                     sprite.x = -width;
-                    sprite.dispatchEvent(eventOffStage);
+                    sprite.dispatchEvent(eventScreenComplete);
                 }
 
             } else if (direction == MoverDirection.UP) {
@@ -199,7 +200,7 @@ var Player = function (assetManager, stage, myX, myY) {
                 sprite.y = sprite.y - speed;
                 if (sprite.y < -width) {
                     sprite.y = stage.canvas.height;
-                    sprite.dispatchEvent(eventOffStage);
+                    sprite.dispatchEvent(eventScreenComplete);
                 }
 
             } else if (direction == MoverDirection.DOWN) {
@@ -209,7 +210,7 @@ var Player = function (assetManager, stage, myX, myY) {
                 sprite.y = sprite.y + speed;
                 if (sprite.y > (stage.canvas.height + width)) {
                     sprite.y = -width;
-                    sprite.dispatchEvent(eventOffStage);
+                    sprite.dispatchEvent(eventScreenComplete);
                 }
             }
         }
