@@ -67,6 +67,7 @@
         stage.addEventListener("onAllAssetsLoaded", onSetup);
         // load the assets
         assetManager.loadAssets(manifest);
+
     }
 
     function onSetup(e) {
@@ -78,6 +79,7 @@
         instructionScreen = new InstructionScreen(assetManager, stage);
 
         introScreen.showMe();
+        createjs.Sound.play("gameMusic");
 
 
         entity = new Player(assetManager, stage, 275, 275);
