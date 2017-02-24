@@ -86,7 +86,8 @@ var Compass = function (stage, assetManager, player) {
         sprite.gotoAndPlay("walkRight");
         //onCollected is not being called
         sprite.addEventListener("animationend", onCollected);
-        controls = true;
+        player.setPhysical(false);
+        player.resetTimer();
     }
 
     function onCollected(e) {

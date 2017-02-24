@@ -156,7 +156,7 @@ var Player = function (assetManager, stage, myX, myY) {
         return getPhysical;
     };
 
-    this.getPhysical = function (value) {
+    this.setPhysical = function (value) {
         getPhysical = value;
     };
 
@@ -264,7 +264,7 @@ var Player = function (assetManager, stage, myX, myY) {
 
     this.resetTimer = function () {
         window.clearInterval(timerTimeout);
-        timer = window.setInterval(timerTester, timerTimeout);
+        //timer = window.setInterval(timerTester, timerTimeout);
     };
 
     // ------------------------------------ event handlers
@@ -302,7 +302,7 @@ var Player = function (assetManager, stage, myX, myY) {
 
     function timerTester(e) {
         console.log("Boop!");
-        getPhysical = false;
+        getPhysical = true;
 
     }
 
