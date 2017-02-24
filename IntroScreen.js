@@ -29,9 +29,6 @@ var IntroScreen = function (assetManager, stage) {
     screen.addChild(btnInstruction);
     btnInstruction.addEventListener("click", onClickInstruction);
 
-    console.log("Intro Page!!");
-
-
 
     //------------------------------public methods
     this.showMe = function () {

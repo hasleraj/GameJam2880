@@ -39,7 +39,6 @@ var ContentScreen = function (assetManager, stage) {
     var compassPool = [];
 
     this.onSetup = function () {
-        console.log(">> adding sprites to contentScreen");
 
         entity = new Player(assetManager, stage, 275, 275);
         entity.showMe();
@@ -71,8 +70,6 @@ var ContentScreen = function (assetManager, stage) {
     this.showMe = function () {
         this.onSetup();
         stage.addChild(screen);
-        console.log("content Page!!");
-
     };
 
     this.hideMe = function () {

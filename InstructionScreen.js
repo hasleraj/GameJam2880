@@ -25,8 +25,6 @@ var InstructionScreen = function (assetManager, stage) {
     //------------------------------public methods
     this.showMe = function () {
         stage.addChild(screen);
-        console.log("instruction Page!!");
-
     };
 
     this.hideMe = function () {

@@ -27,6 +27,7 @@ var Player = function (assetManager, stage, myX, myY) {
     // stances
     var moving = false;
     var getPhysical = false;
+    var lives = 3;
 
     var speed = 5;
     var direction = MoverDirection.LEFT;
@@ -58,6 +59,14 @@ var Player = function (assetManager, stage, myX, myY) {
 
     function setVelY(myVelocityY) {
         velY = myVelocityY;
+    }
+
+    function getLives() {
+        return lives;
+    }
+
+    function setLives(livesRemaining) {
+        lives = livesRemaining;
     }
 
     function startMe() {
