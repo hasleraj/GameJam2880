@@ -11,39 +11,33 @@
 /* globals InstructionScreen */
 var ContentScreen = function (assetManager, stage, myIntroScreen) {
 
-    //CustomEvent
+    //construct event, container object and set framerate of the game
     var eventScreenComplete = new CustomEvent("contentFinished");
-
-    //construct container object
     var screen = new createjs.Container();
-    // frame rate of game
     var frameRate = 24;
 
     var introScreen;
 
-    var hitAreaSprite = assetManager.getSprite("assets");
-
     // custom player class
     var entity = null;
 
-    // fireball timer to add gameplay
+    // variables for fireball object
     var fireballTimer = null;
     var fireballDelay = 0;
-    // object pooling
     var fireballMax = 10;
     var fireballPool = [];
 
-    // compass timer to add gameplay
+    // variables for compass object
     var compassTimer = null;
     var compassDelay = 0;
-    // object pooling
     var compassMax = 10;
     var compassPool = [];
 
+    //track time alive and score
     var startTime = null;
     var score = null;
 
-    /************** Character Tile Setup **************/
+    /************** Asset Setup **************/
     var lifeOne = assetManager.getSprite("assets");
     lifeOne.gotoAndStop("heartAlive");
     lifeOne.x = 410;
@@ -62,6 +56,20 @@ var ContentScreen = function (assetManager, stage, myIntroScreen) {
     lifeThree.x = 530;
     lifeThree.y = 520;
     screen.addChild(lifeThree);
+
+    /*var btnRestart = assetManager.getSprite("assets");
+    btnRestart.gotoAndStop("heartAlive");
+    btnRestart.x = 530;
+    btnRestart.y = 520;
+    screen.addChild(btnRestart);
+
+    var btnMainMenu = assetManager.getSprite("assets");
+    btnMainMenu.gotoAndStop("heartAlive");
+    btnMainMenu.x = 530;
+    btnMainMenu.y = 520;
+    screen.addChild(btnMainMenu);*/
+
+
 
     /************** Public Methods **************/
 
@@ -171,6 +179,7 @@ var ContentScreen = function (assetManager, stage, myIntroScreen) {
         // TESTING FPS
         document.getElementById("fps").innerHTML = createjs.Ticker.getMeasuredFPS();
 
+        //remove individual life trackers when player collides with fireball
         if (entity.getLives() === 2) {
             lifeThree.gotoAndStop("heartDead");
         } else if (entity.getLives() === 1) {
