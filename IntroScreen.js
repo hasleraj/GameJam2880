@@ -11,7 +11,13 @@ var IntroScreen = function (assetManager, stage) {
     var screen = new createjs.Container();
 
     var hitAreaSprite = assetManager.getSprite("assets");
-    //add play button
+
+
+    var background = assetManager.getSprite("assets");
+    background.gotoAndStop("selectACharacter");
+    screen.addChild(background);
+
+    /************** Play Button Setup **************/
     var btnPlay = assetManager.getSprite("assets");
     btnPlay.gotoAndStop("btnPlayUp");
     btnPlay.x = 100;
@@ -20,7 +26,7 @@ var IntroScreen = function (assetManager, stage) {
     screen.addChild(btnPlay);
     btnPlay.addEventListener("click", onClickPlay);
 
-    //add instruction button
+    /************** Instruction Button Setup **************/
     var btnInstruction = assetManager.getSprite("assets");
     btnInstruction.gotoAndStop("btnInstructionsUp");
     btnInstruction.x = 300;
@@ -29,23 +35,46 @@ var IntroScreen = function (assetManager, stage) {
     screen.addChild(btnInstruction);
     btnInstruction.addEventListener("click", onClickInstruction);
 
+    /************** Character Tile Setup **************/
     var firstCharacterTile = assetManager.getSprite("assets");
-    firstCharacterTile.gotoAndStop("deselectedCharacter");
-    firstCharacterTile.x = 40;
-    firstCharacterTile.y = 120;
-    stage.addChild(firstCharacterTile);
+    firstCharacterTile.gotoAndStop("deselectedCharacter");    firstCharacterTile.x = 40;
+    firstCharacterTile.y = 170;
+    firstCharacterTile.buttonHelper = new createjs.ButtonHelper(btnPlay, "deselectedCharacter", "selectedCharacter", "selectedCharacter", false, hitAreaSprite, "hitArea");
+    screen.addChild(firstCharacterTile);
+    firstCharacterTile.addEventListener("click", onClickSelection);
+
 
     var secondCharacterTile = assetManager.getSprite("assets");
     secondCharacterTile.gotoAndStop("deselectedCharacter");
     secondCharacterTile.x = 230;
-    secondCharacterTile.y = 120;
-    stage.addChild(secondCharacterTile);
+    secondCharacterTile.y = 170;
+    screen.addChild(secondCharacterTile);
 
     var thirdCharacterTile = assetManager.getSprite("assets");
     thirdCharacterTile.gotoAndStop("deselectedCharacter");
     thirdCharacterTile.x = 410;
-    thirdCharacterTile.y = 120;
-    stage.addChild(thirdCharacterTile);
+    thirdCharacterTile.y = 170;
+    screen.addChild(thirdCharacterTile);
+
+    /************** Character Setup **************/
+    var firstCharacter = assetManager.getSprite("assets");
+    firstCharacter.gotoAndPlay("walkDown");
+    firstCharacter.x = 78;
+    firstCharacter.y = 210;
+    screen.addChild(firstCharacter);
+
+    var secondCharacter = assetManager.getSprite("assets");
+    secondCharacter.gotoAndPlay("walkDownB");
+    secondCharacter.x = 268;
+    secondCharacter.y = 210;
+    screen.addChild(secondCharacter);
+
+    var thirdCharacter = assetManager.getSprite("assets");
+    thirdCharacter.gotoAndPlay("walkDownC");
+    thirdCharacter.x = 448;
+    thirdCharacter.y = 210;
+    screen.addChild(thirdCharacter);
+
 
 
 
@@ -69,6 +98,10 @@ var IntroScreen = function (assetManager, stage) {
         eventScreenComplete.buttonNumber = 2;
 
         stage.dispatchEvent(eventScreenComplete);
+    }
+
+    function onClickSelection(e) {
+
     }
 
 };
