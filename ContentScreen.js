@@ -36,6 +36,7 @@ var ContentScreen = function (assetManager, stage, myIntroScreen) {
     //track time alive and score
     var startTime = null;
     var score = null;
+    var gameOver = null;
 
     /************** Asset Setup **************/
     var lifeOne = assetManager.getSprite("assets");
@@ -57,20 +58,38 @@ var ContentScreen = function (assetManager, stage, myIntroScreen) {
     lifeThree.y = 520;
     screen.addChild(lifeThree);
 
-    /*var btnRestart = assetManager.getSprite("assets");
-    btnRestart.gotoAndStop("heartAlive");
-    btnRestart.x = 530;
-    btnRestart.y = 520;
-    screen.addChild(btnRestart);
+    var btnRestart = assetManager.getSprite("assets");
+    btnRestart.gotoAndStop("btnPlayUp");
+    btnRestart.x = 300;
+    btnRestart.y = 400;
+    btnRestart.buttonHelper = new createjs.ButtonHelper(btnRestart, "btnPlayUp", "btnPlayDown", "btnPlayDown", false);
+    btnRestart.addEventListener("click", onRestart);
 
     var btnMainMenu = assetManager.getSprite("assets");
-    btnMainMenu.gotoAndStop("heartAlive");
-    btnMainMenu.x = 530;
-    btnMainMenu.y = 520;
-    screen.addChild(btnMainMenu);*/
+    btnMainMenu.gotoAndStop("btnPlayUp");
+    btnMainMenu.x = 80;
+    btnMainMenu.y = 400;
+    btnMainMenu.buttonHelper = new createjs.ButtonHelper(btnMainMenu, "btnPlayUp", "btnPlayDown", "btnPlayDown", false);
+    btnMainMenu.addEventListener("click", onMainMenu);
 
 
 
+
+    /************** Private Methods **************/
+
+    function resetMe() {
+
+        //need to set lives back to 3 otherwise everything glitches
+
+        screen.removeChild(btnRestart);
+        screen.removeChild(btnMainMenu);
+
+        entity.setLives(3);
+        screen.removeChild(entity);
+        lifeOne.gotoAndStop("heartAlive");
+        lifeTwo.gotoAndStop("heartAlive");
+        lifeThree.gotoAndStop("heartAlive");
+    }
     /************** Public Methods **************/
 
     this.onSetup = function () {
@@ -122,9 +141,6 @@ var ContentScreen = function (assetManager, stage, myIntroScreen) {
     };
 
     /************** Event Handlers **************/
-    function onClick(e) {
-        stage.dispatchEvent(eventScreenComplete);
-    }
 
     function onStartGame(e) {
 
@@ -188,13 +204,17 @@ var ContentScreen = function (assetManager, stage, myIntroScreen) {
         }
 
         if (entity.getLives() === 0) {
-            var gameOver = assetManager.getSprite("assets");
+            gameOver = assetManager.getSprite("assets");
             gameOver.gotoAndStop("gameOverBg");
             gameOver.x = 0;
             gameOver.y = -2;
             screen.addChildAt(gameOver, 0);
             stage.addChild(score);
             lifeOne.gotoAndStop("heartDead");
+            screen.addChild(btnRestart);
+            screen.addChild(btnMainMenu);
+
+
 
         } else {
             // update all fireballs (their mover) in pool if active
@@ -221,6 +241,15 @@ var ContentScreen = function (assetManager, stage, myIntroScreen) {
             // update the stage!
             stage.update();
         }
+    }
+
+    function onMainMenu(e) {
+        eventScreenComplete.buttonNumber = 0;
+        stage.dispatchEvent(eventScreenComplete);
+    }
+
+    function onRestart(e) {
+        resetMe();
     }
 
 };

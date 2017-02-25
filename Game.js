@@ -77,6 +77,7 @@
 
         stage.addEventListener("introFinished", onIntroFinished);
         stage.addEventListener("instructionFinished", onInstructionFinished);
+        stage.addEventListener("contentFinished", onContentFinished);
 
 
         console.log(">> main screen ready");
@@ -105,6 +106,14 @@
         if (e.buttonNumber === 0) {
             introScreen.showMe();
             instructionScreen.hideMe();
+        }
+    }
+
+    function onContentFinished(e) {
+        console.log(e.buttonNumber);
+        if (e.buttonNumber === 0) {
+            introScreen.showMe();
+            contentScreen.hideMe();
         }
     }
 

@@ -71,9 +71,9 @@ var Player = function (assetManager, stage, myX, myY) {
         return lives;
     }
 
-    function setLives(livesRemaining) {
-        lives = livesRemaining;
-    }
+    this.setLives = function (value) {
+        lives = value;
+    };
 
     function startMe() {
         if (!moving) {
@@ -179,8 +179,9 @@ var Player = function (assetManager, stage, myX, myY) {
         return lives;
     };
 
-    this.setCharacter = function(char) {
+    this.setCharacter = function (char) {
         var character = char;
+<<<<<<< HEAD
         console.log("player passed in" +char);
         if (character === 3){
             walkDown = "walkDownC";
@@ -191,11 +192,22 @@ var Player = function (assetManager, stage, myX, myY) {
             walkSide = "walkLeftB";
             walkUp = "walkUpB";
         } else if (character === 1){
+=======
+        if (character === "betty") {
+            walkDown = "walkDownC";
+            walkSide = "walkLeftC";
+            walkUp = "walkUpC";
+        } else if (character === "ash") {
+            walkDown = "walkDownB";
+            walkSide = "walkLeftB";
+            walkUp = "walkUpB";
+        } else if (character === "ninja") {
+>>>>>>> bfcdc50aefa5816bd19ea2168e62c8a6468cdaaf
             walkDown = "walkDown";
             walkSide = "walkLeft";
             walkUp = "walkUp";
         }
-    }
+    };
 
     // ---------------------------------- public methods
     this.showMe = function () {
