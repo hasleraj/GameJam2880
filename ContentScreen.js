@@ -62,14 +62,14 @@ var ContentScreen = function (assetManager, stage, myIntroScreen) {
     btnRestart.gotoAndStop("btnPlayUp");
     btnRestart.x = 300;
     btnRestart.y = 400;
-    btnRestart.buttonHelper = new createjs.ButtonHelper(btnRestart, "btnPlayUp", "btnPlayDown", "btnPlayDown", false);
+    btnRestart.buttonHelper = new createjs.ButtonHelper(btnRestart, "btnRetryUp", "btnRetryDown", "btnRetryDown", false);
     btnRestart.addEventListener("click", onRestart);
 
     var btnMainMenu = assetManager.getSprite("assets");
     btnMainMenu.gotoAndStop("btnPlayUp");
     btnMainMenu.x = 80;
     btnMainMenu.y = 400;
-    btnMainMenu.buttonHelper = new createjs.ButtonHelper(btnMainMenu, "btnPlayUp", "btnPlayDown", "btnPlayDown", false);
+    btnMainMenu.buttonHelper = new createjs.ButtonHelper(btnMainMenu, "btnMenuUp", "btnMenuDown", "btnMenuUp", false);
     btnMainMenu.addEventListener("click", onMainMenu);
 
 
@@ -79,7 +79,8 @@ var ContentScreen = function (assetManager, stage, myIntroScreen) {
 
     function resetMe() {
 
-        //need to set lives back to 3 otherwise everything glitches
+        compassPool = [];
+        fireballPool = [];
         startTime = (new Date()).getTime();
         screen.removeChild(btnRestart);
         screen.removeChild(btnMainMenu);
@@ -250,6 +251,7 @@ var ContentScreen = function (assetManager, stage, myIntroScreen) {
     }
 
     function onMainMenu(e) {
+        resetMe();
         eventScreenComplete.buttonNumber = 0;
         stage.dispatchEvent(eventScreenComplete);
     }
