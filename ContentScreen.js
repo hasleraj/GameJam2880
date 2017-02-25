@@ -75,7 +75,7 @@ var ContentScreen = function (assetManager, stage, myIntroScreen) {
 
         introScreen = myIntroScreen;
 
-        entity = new Player(assetManager, stage, 275, 275, introScreen.getCharacter());
+        entity = new Player(assetManager, stage, 275, 275);
         entity.showMe();
 
         entity.resetKeys();
