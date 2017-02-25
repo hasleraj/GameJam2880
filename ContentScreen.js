@@ -86,6 +86,7 @@ var ContentScreen = function (assetManager, stage, myIntroScreen) {
         screen.addChild(lifeThree);
         entity.setLives(3);
         entity.showMe();
+        entity.setPhysical(false);
     }
 
     function poolResources() {

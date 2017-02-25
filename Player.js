@@ -299,7 +299,7 @@ var Player = function (assetManager, stage, myX, myY) {
     };
 
     this.resetTimer = function () {
-        window.clearInterval(timerTimeout);
+        window.clearInterval(timer);
         timer = window.setInterval(timerTester, timerTimeout);
     };
 
