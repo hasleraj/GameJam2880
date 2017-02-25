@@ -199,8 +199,6 @@ var ContentScreen = function (assetManager, stage, myIntroScreen) {
 
         if (entity.getLives() === 0) {
 
-            createjs.Sound.play("gameOver");
-
             gameOver = assetManager.getSprite("assets");
             gameOver.gotoAndStop("gameOver");
             gameOver.x = 100;

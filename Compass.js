@@ -71,6 +71,7 @@ var Compass = function (stage, assetManager, player) {
             onCollectMe();
             createjs.Sound.play("hitCompass");
             player.resetTimer();
+            player.getPhysical(false);
         }
     };
 

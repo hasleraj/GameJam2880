@@ -295,8 +295,6 @@ var Player = function (assetManager, stage, myX, myY) {
             ary[ary.length] = randomnumber;
         }
 
-        //getPhysical = true;
-
         return ary;
     };
 
