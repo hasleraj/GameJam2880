@@ -34,9 +34,12 @@ var ContentScreen = function (assetManager, stage, myIntroScreen) {
     var compassPool = [];
 
     //track time alive and score
-    var startTime = null;
+    var startTime = 0;
+    var currentTime = null;
+    var time = 0;
     var score = null;
     var background = null;
+    var timerTimeout = 3000;
 
     /************** Asset Setup **************/
     var lifeOne = assetManager.getSprite("assets");
@@ -79,9 +82,6 @@ var ContentScreen = function (assetManager, stage, myIntroScreen) {
 
     function resetMe() {
 
-        compassPool = [];
-        fireballPool = [];
-        startTime = (new Date()).getTime();
         screen.removeChild(btnRestart);
         screen.removeChild(btnMainMenu);
         background.gotoAndPlay("backgroundTwo");
@@ -239,8 +239,8 @@ var ContentScreen = function (assetManager, stage, myIntroScreen) {
 
 
             // update the score
-            var currentTime = (new Date()).getTime();
-            var time = Math.floor((currentTime - startTime) / 1000);
+            currentTime = (new Date()).getTime();
+            time = Math.floor((currentTime - startTime) / 1000);
             score.text = "Game score: " + (time * 119);
 
             //update sprite
