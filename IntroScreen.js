@@ -29,6 +29,25 @@ var IntroScreen = function (assetManager, stage) {
     screen.addChild(btnInstruction);
     btnInstruction.addEventListener("click", onClickInstruction);
 
+    var firstCharacterTile = assetManager.getSprite("assets");
+    firstCharacterTile.gotoAndStop("deselectedCharacter");
+    firstCharacterTile.x = 40;
+    firstCharacterTile.y = 120;
+    stage.addChild(firstCharacterTile);
+
+    var secondCharacterTile = assetManager.getSprite("assets");
+    secondCharacterTile.gotoAndStop("deselectedCharacter");
+    secondCharacterTile.x = 230;
+    secondCharacterTile.y = 120;
+    stage.addChild(secondCharacterTile);
+
+    var thirdCharacterTile = assetManager.getSprite("assets");
+    thirdCharacterTile.gotoAndStop("deselectedCharacter");
+    thirdCharacterTile.x = 410;
+    thirdCharacterTile.y = 120;
+    stage.addChild(thirdCharacterTile);
+
+
 
     //------------------------------public methods
     this.showMe = function () {

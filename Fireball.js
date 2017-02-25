@@ -21,7 +21,7 @@ var Fireball = function (stage, assetManager, player) {
 
     // construct sprite for this object and add to stage
     var sprite = assetManager.getSprite("assets");
-    sprite.gotoAndPlay("fireBall");
+    sprite.gotoAndPlay("ballOfire");
     var spriteMover = new MoverDiagonal(sprite, stage);
 
 
@@ -65,7 +65,7 @@ var Fireball = function (stage, assetManager, player) {
 
     this.releaseMe = function () {
         // fire startMe again to take the new rotation of the fireball
-        sprite.gotoAndPlay("fireBall");
+        sprite.gotoAndPlay("ballOfire");
         spriteMover.startMe();
 
         stage.addChild(sprite);
@@ -99,7 +99,7 @@ var Fireball = function (stage, assetManager, player) {
     function onKillMe(e) {
         spriteMover.stopMe();
         // play death sequence of fireball
-        sprite.gotoAndPlay("fireBall");
+        sprite.gotoAndPlay("ballOfire");
         sprite.addEventListener("animationend", onKilled);
     }
 
