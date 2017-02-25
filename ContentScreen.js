@@ -30,13 +30,17 @@ var ContentScreen = function (assetManager, stage, myIntroScreen) {
     // variables for compass object
     var compassTimer = null;
     var compassDelay = 0;
-    var compassMax = 10;
+    var compassMax = 3;
     var compassPool = [];
 
     //track time alive and score
-    var startTime = null;
+    var startTime = 0;
+    var currentTime = null;
+    var time = 0;
     var score = null;
-    var background = null;
+    var background = assetManager.getSprite("assets");
+    var gameOver;
+    var game = false;
 
     /************** Asset Setup **************/
     var lifeOne = assetManager.getSprite("assets");
@@ -72,18 +76,13 @@ var ContentScreen = function (assetManager, stage, myIntroScreen) {
     btnMainMenu.buttonHelper = new createjs.ButtonHelper(btnMainMenu, "btnMenuUp", "btnMenuDown", "btnMenuUp", false);
     btnMainMenu.addEventListener("click", onMainMenu);
 
-
-
-
     /************** Private Methods **************/
 
     function resetMe() {
-
-        compassPool = [];
-        fireballPool = [];
+        screen.removeChild(gameOver);
+        game = false;
+        time = 0;
         startTime = (new Date()).getTime();
-        screen.removeChild(btnRestart);
-        screen.removeChild(btnMainMenu);
         background.gotoAndPlay("backgroundTwo");
         screen.addChild(background);
         lifeOne.gotoAndPlay("heartAlive");
@@ -94,18 +93,22 @@ var ContentScreen = function (assetManager, stage, myIntroScreen) {
         screen.addChild(lifeThree);
         entity.setLives(3);
         entity.showMe();
+    }
 
-
+    function removeScore() {
+        console.log("We made it!");
+        //stage.removeChild(score);
     }
     /************** Public Methods **************/
 
     this.onSetup = function () {
-
         score = new createjs.Text("Hello World", "32px VT323", "#000000");
         score.x = 30;
         score.y = 40;
         score.textBaseline = "alphabetic";
         stage.addChild(score);
+        firstConstruction = false;
+
 
         introScreen = myIntroScreen;
 
@@ -152,6 +155,7 @@ var ContentScreen = function (assetManager, stage, myIntroScreen) {
 
     function onStartGame(e) {
 
+        game = true;
         // construct and setup timers to drop objects on display list
         fireballDelay = 500;
         fireballTimer = window.setInterval(onAddFireball, fireballDelay);
@@ -212,17 +216,23 @@ var ContentScreen = function (assetManager, stage, myIntroScreen) {
         }
 
         if (entity.getLives() === 0) {
+
             createjs.Sound.play("gameOver");
-            background = assetManager.getSprite("assets");
-            background.gotoAndStop("gameOverBg");
-            background.x = 0;
-            background.y = -2;
-            screen.addChildAt(background, 0);
+
+            gameOver = assetManager.getSprite("assets");
+            gameOver.gotoAndStop("gameOver");
+            gameOver.x = 100;
+            gameOver.y = 200;
+            screen.addChild(gameOver);
+
             stage.addChild(score);
             lifeOne.gotoAndStop("heartDead");
             screen.addChild(btnRestart);
             screen.addChild(btnMainMenu);
-            
+
+            game = false;
+
+
 
 
         } else {
@@ -239,11 +249,16 @@ var ContentScreen = function (assetManager, stage, myIntroScreen) {
                 }
             }
 
-
             // update the score
-            var currentTime = (new Date()).getTime();
-            var time = Math.floor((currentTime - startTime) / 1000);
-            score.text = "Game score: " + (time * 119);
+            if (game) {
+                currentTime = (new Date()).getTime();
+                time = Math.floor((currentTime - startTime) / 1000);
+                score.text = "Game score: " + (time * 119);
+            } else {
+                time = 0;
+                score.text = "Game score: " + (time * 119);
+            }
+
 
             //update sprite
             entity.update();
@@ -253,7 +268,7 @@ var ContentScreen = function (assetManager, stage, myIntroScreen) {
     }
 
     function onMainMenu(e) {
-        resetMe();
+        removeScore();
         eventScreenComplete.buttonNumber = 0;
         stage.dispatchEvent(eventScreenComplete);
         createjs.Sound.play("buttonClick");
