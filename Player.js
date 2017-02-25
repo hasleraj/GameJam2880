@@ -44,7 +44,6 @@ var Player = function (assetManager, stage, myX, myY) {
     var walkSide = null;
     var walkUp = null;
 
-
     // add player to the screen
     var sprite = assetManager.getSprite("assets");
     sprite.gotoAndStop(walkDown);

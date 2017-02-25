@@ -24,6 +24,7 @@
     var frameRate = 24;
     // game objects
     var assetManager = null;
+    var myMusic = null;
 
     //screens
     var introScreen = null;
@@ -66,9 +67,18 @@
         introScreen = new IntroScreen(assetManager, stage);
         contentScreen = new ContentScreen(assetManager, stage, introScreen);
         instructionScreen = new InstructionScreen(assetManager, stage);
+        
+        myMusic = new Audio('lib/gameMusic.ogg');
+        myMusic.addEventListener('ended', function() {
+            this.currentTime = 0;
+            this.play();
+        }, false);
+        myMusic.play();
 
         introScreen.showMe();
-        createjs.Sound.play("gameMusic");
+        //createjs.Sound.play("gameMusic");
+        
+
 
         // startup the ticker
         createjs.Ticker.setFPS(frameRate);

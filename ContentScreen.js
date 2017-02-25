@@ -212,6 +212,7 @@ var ContentScreen = function (assetManager, stage, myIntroScreen) {
         }
 
         if (entity.getLives() === 0) {
+            createjs.Sound.play("gameOver");
             background = assetManager.getSprite("assets");
             background.gotoAndStop("gameOverBg");
             background.x = 0;
@@ -221,7 +222,7 @@ var ContentScreen = function (assetManager, stage, myIntroScreen) {
             lifeOne.gotoAndStop("heartDead");
             screen.addChild(btnRestart);
             screen.addChild(btnMainMenu);
-
+            
 
 
         } else {
@@ -255,10 +256,12 @@ var ContentScreen = function (assetManager, stage, myIntroScreen) {
         resetMe();
         eventScreenComplete.buttonNumber = 0;
         stage.dispatchEvent(eventScreenComplete);
+        createjs.Sound.play("buttonClick");
     }
 
     function onRestart(e) {
         resetMe();
+        createjs.Sound.play("buttonClick");
     }
 
 };
