@@ -112,17 +112,14 @@ var IntroScreen = function (assetManager, stage) {
 
     function onClickBetty(e) {
         character = 3;
-        console.log(character);
     }
 
     function onClickAsh(e) {
         character = 2;
-        console.log(character);
     }
 
     function onClickNinja(e) {
         character = 1;
-        console.log(character);
     }
 
 };

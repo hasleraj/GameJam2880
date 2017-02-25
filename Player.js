@@ -181,8 +181,7 @@ var Player = function (assetManager, stage, myX, myY) {
 
     this.setCharacter = function (char) {
         var character = char;
-<<<<<<< HEAD
-        console.log("player passed in" +char);
+
         if (character === 3){
             walkDown = "walkDownC";
             walkSide = "walkLeftC";
@@ -192,17 +191,6 @@ var Player = function (assetManager, stage, myX, myY) {
             walkSide = "walkLeftB";
             walkUp = "walkUpB";
         } else if (character === 1){
-=======
-        if (character === "betty") {
-            walkDown = "walkDownC";
-            walkSide = "walkLeftC";
-            walkUp = "walkUpC";
-        } else if (character === "ash") {
-            walkDown = "walkDownB";
-            walkSide = "walkLeftB";
-            walkUp = "walkUpB";
-        } else if (character === "ninja") {
->>>>>>> bfcdc50aefa5816bd19ea2168e62c8a6468cdaaf
             walkDown = "walkDown";
             walkSide = "walkLeft";
             walkUp = "walkUp";
