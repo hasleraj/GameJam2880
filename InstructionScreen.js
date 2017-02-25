@@ -26,7 +26,6 @@ var InstructionScreen = function (assetManager, stage) {
     screen.addChild(lblInstructions);
 
 
-
     /************** Public Methods**************/
     this.showMe = function () {
         stage.addChild(screen);
