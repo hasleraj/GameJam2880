@@ -95,10 +95,6 @@ var ContentScreen = function (assetManager, stage, myIntroScreen) {
         entity.showMe();
     }
 
-    function removeScore() {
-        console.log("We made it!");
-        //stage.removeChild(score);
-    }
     /************** Public Methods **************/
 
     this.onSetup = function () {
@@ -221,7 +217,7 @@ var ContentScreen = function (assetManager, stage, myIntroScreen) {
             gameOver.x = 100;
             gameOver.y = 200;
             screen.addChild(gameOver);
-            stage.addChild(score);
+            //stage.addChild(score);
             lifeOne.gotoAndStop("heartDead");
             screen.addChild(btnRestart);
             screen.addChild(btnMainMenu);
@@ -230,6 +226,7 @@ var ContentScreen = function (assetManager, stage, myIntroScreen) {
 
 
         } else {
+            stage.addChild(score);
             // update all fireballs (their mover) in pool if active
             for (var n = 0; n < fireballPool.length; n++) {
                 if (fireballPool[n].getActive()) {
@@ -262,7 +259,7 @@ var ContentScreen = function (assetManager, stage, myIntroScreen) {
     }
 
     function onMainMenu(e) {
-        removeScore();
+        resetMe();
         eventScreenComplete.buttonNumber = 0;
         stage.dispatchEvent(eventScreenComplete);
     }
