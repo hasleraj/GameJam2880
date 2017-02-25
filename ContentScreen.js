@@ -41,6 +41,25 @@ var ContentScreen = function (assetManager, stage) {
     var startTime = null;
     var score = null;
 
+    /************** Character Tile Setup **************/
+    var lifeOne = assetManager.getSprite("assets");
+    lifeOne.gotoAndStop("heartAlive");
+    lifeOne.x = 410;
+    lifeOne.y = 520;
+    screen.addChild(lifeOne);
+
+    var lifeTwo = assetManager.getSprite("assets");
+    lifeTwo.gotoAndStop("heartAlive");
+    lifeTwo.x = 470;
+    lifeTwo.y = 520;
+    screen.addChild(lifeTwo);
+
+
+    var lifeThree = assetManager.getSprite("assets");
+    lifeThree.gotoAndStop("heartAlive");
+    lifeThree.x = 530;
+    lifeThree.y = 520;
+    screen.addChild(lifeThree);
 
     /************** Public Methods **************/
 
