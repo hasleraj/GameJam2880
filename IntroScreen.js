@@ -61,8 +61,6 @@ var IntroScreen = function (assetManager, stage) {
     screen.addChild(thirdCharacterTile);
     thirdCharacterTile.addEventListener("click", onClickBetty);
 
-
-
     /************** Character Setup **************/
     var firstCharacter = assetManager.getSprite("assets");
     firstCharacter.gotoAndPlay("walkDown");
@@ -81,9 +79,6 @@ var IntroScreen = function (assetManager, stage) {
     thirdCharacter.x = 448;
     thirdCharacter.y = 210;
     screen.addChild(thirdCharacter);
-
-
-
 
     /************** Get/Set Methods **************/
     this.getCharacter = function () {

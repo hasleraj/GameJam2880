@@ -64,17 +64,10 @@ var ContentScreen = function (assetManager, stage, myIntroScreen) {
 
     var btnRestart = assetManager.getSprite("assets");
     btnRestart.gotoAndStop("btnPlayUp");
-    btnRestart.x = 300;
+    btnRestart.x = 180;
     btnRestart.y = 400;
     btnRestart.buttonHelper = new createjs.ButtonHelper(btnRestart, "btnRetryUp", "btnRetryDown", "btnRetryDown", false);
     btnRestart.addEventListener("click", onRestart);
-
-    var btnMainMenu = assetManager.getSprite("assets");
-    btnMainMenu.gotoAndStop("btnPlayUp");
-    btnMainMenu.x = 80;
-    btnMainMenu.y = 400;
-    btnMainMenu.buttonHelper = new createjs.ButtonHelper(btnMainMenu, "btnMenuUp", "btnMenuDown", "btnMenuUp", false);
-    btnMainMenu.addEventListener("click", onMainMenu);
 
     /************** Private Methods **************/
 
@@ -103,8 +96,6 @@ var ContentScreen = function (assetManager, stage, myIntroScreen) {
         score.y = 40;
         score.textBaseline = "alphabetic";
         stage.addChild(score);
-        firstConstruction = false;
-
 
         introScreen = myIntroScreen;
 
@@ -216,17 +207,13 @@ var ContentScreen = function (assetManager, stage, myIntroScreen) {
             gameOver.gotoAndStop("gameOver");
             gameOver.x = 100;
             gameOver.y = 200;
+            stage.addChild(score);
             screen.addChild(gameOver);
-            //stage.addChild(score);
             lifeOne.gotoAndStop("heartDead");
             screen.addChild(btnRestart);
-            screen.addChild(btnMainMenu);
             game = false;
 
-
-
         } else {
-            stage.addChild(score);
             // update all fireballs (their mover) in pool if active
             for (var n = 0; n < fireballPool.length; n++) {
                 if (fireballPool[n].getActive()) {
@@ -250,18 +237,11 @@ var ContentScreen = function (assetManager, stage, myIntroScreen) {
                 score.text = "Game score: " + (time * 119);
             }
 
-
             //update sprite
             entity.update();
             // update the stage!
             stage.update();
         }
-    }
-
-    function onMainMenu(e) {
-        resetMe();
-        eventScreenComplete.buttonNumber = 0;
-        stage.dispatchEvent(eventScreenComplete);
     }
 
     function onRestart(e) {

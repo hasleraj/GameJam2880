@@ -204,7 +204,6 @@ var Player = function (assetManager, stage, myX, myY) {
     // ---------------------------------- public methods
     this.showMe = function () {
         // do other stuff here that needs to be done when screen becomes visible
-        // ....
 
         timer = window.setInterval(timerTester, timerTimeout);
 
