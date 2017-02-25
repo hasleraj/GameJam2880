@@ -39,8 +39,8 @@ var ContentScreen = function (assetManager, stage, myIntroScreen) {
     var time = 0;
     var score = null;
     var background = assetManager.getSprite("assets");
-    var timerTimeout = 3000;
     var gameOver;
+    var game = false;
 
     /************** Asset Setup **************/
     var lifeOne = assetManager.getSprite("assets");
@@ -83,6 +83,9 @@ var ContentScreen = function (assetManager, stage, myIntroScreen) {
 
     function resetMe() {
         screen.removeChild(gameOver);
+        game = false;
+        time = 0;
+        startTime = (new Date()).getTime();
         background.gotoAndPlay("backgroundTwo");
         screen.addChild(background);
         lifeOne.gotoAndPlay("heartAlive");
@@ -152,6 +155,7 @@ var ContentScreen = function (assetManager, stage, myIntroScreen) {
 
     function onStartGame(e) {
 
+        game = true;
         // construct and setup timers to drop objects on display list
         fireballDelay = 500;
         fireballTimer = window.setInterval(onAddFireball, fireballDelay);
@@ -214,13 +218,14 @@ var ContentScreen = function (assetManager, stage, myIntroScreen) {
         if (entity.getLives() === 0) {
             gameOver = assetManager.getSprite("assets");
             gameOver.gotoAndStop("gameOver");
-            gameOver.x = 0;
-            gameOver.y = -2;
+            gameOver.x = 100;
+            gameOver.y = 200;
             screen.addChild(gameOver);
             stage.addChild(score);
             lifeOne.gotoAndStop("heartDead");
             screen.addChild(btnRestart);
             screen.addChild(btnMainMenu);
+            game = false;
 
 
 
@@ -239,9 +244,15 @@ var ContentScreen = function (assetManager, stage, myIntroScreen) {
             }
 
             // update the score
-            currentTime = (new Date()).getTime();
-            time = Math.floor((currentTime - startTime) / 1000);
-            score.text = "Game score: " + (time * 119);
+            if (game) {
+                currentTime = (new Date()).getTime();
+                time = Math.floor((currentTime - startTime) / 1000);
+                score.text = "Game score: " + (time * 119);
+            } else {
+                time = 0;
+                score.text = "Game score: " + (time * 119);
+            }
+
 
             //update sprite
             entity.update();
@@ -251,7 +262,6 @@ var ContentScreen = function (assetManager, stage, myIntroScreen) {
     }
 
     function onMainMenu(e) {
-        resetMe();
         eventScreenComplete.buttonNumber = 0;
         stage.dispatchEvent(eventScreenComplete);
     }
