@@ -89,6 +89,8 @@ var Fireball = function (stage, assetManager, player) {
 
         if (c <= 65) {
             sprite.dispatchEvent(eventPlayerBurned);
+            player.removeLives();
+            console.log("- one life");
             onKillMe();
         }
     };

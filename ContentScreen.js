@@ -136,23 +136,27 @@ var ContentScreen = function (assetManager, stage) {
         // TESTING FPS
         document.getElementById("fps").innerHTML = createjs.Ticker.getMeasuredFPS();
 
-        // update all fireballs (their mover) in pool if active
-        for (var n = 0; n < fireballPool.length; n++) {
-            if (fireballPool[n].getActive()) {
-                fireballPool[n].updateMe();
+        if (entity.getLives() === 0) {
+            console.log("You have died. GG!");
+        } else { 
+            // update all fireballs (their mover) in pool if active
+            for (var n = 0; n < fireballPool.length; n++) {
+                if (fireballPool[n].getActive()) {
+                    fireballPool[n].updateMe();
+                }
             }
-        }
 
-        for (var k = 0; k < compassPool.length; k++) {
-            if (compassPool[k].getActive()) {
-                compassPool[k].updateMe();
+            for (var k = 0; k < compassPool.length; k++) {
+                if (compassPool[k].getActive()) {
+                    compassPool[k].updateMe();
+                }
             }
-        }
 
-        //update sprite
-        entity.update();
-        // update the stage!
-        stage.update();
+            //update sprite
+            entity.update();
+            // update the stage!
+            stage.update();
+        }
     }
 
 };
