@@ -38,7 +38,16 @@ var ContentScreen = function (assetManager, stage) {
     var compassMax = 10;
     var compassPool = [];
 
+    var startTime = null;
+    var score = null;
+
     this.onSetup = function () {
+
+        score = new createjs.Text("Hello World", "32px VT323", "#000000");
+        score.x = 30;
+        score.y = 40;
+        score.textBaseline = "alphabetic";
+        stage.addChild(score);
 
         entity = new Player(assetManager, stage, 275, 275);
         entity.showMe();
@@ -64,6 +73,8 @@ var ContentScreen = function (assetManager, stage) {
         // setup event listener to start game
         document.addEventListener("click", onStartGame);
         console.log(">> game ready");
+
+        startTime = (new Date()).getTime();
     };
 
     //------------------------------public methods
@@ -151,6 +162,12 @@ var ContentScreen = function (assetManager, stage) {
                     compassPool[k].updateMe();
                 }
             }
+
+            
+            // update the score
+            currentTime = (new Date()).getTime();
+            var time = Math.floor((currentTime-startTime)/1000);
+            score.text = "Game score: " + (time * 119);
 
             //update sprite
             entity.update();
