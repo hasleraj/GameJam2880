@@ -36,8 +36,6 @@
 
     /************** Event Handlers **************/
     function onInit() {
-        console.log(">> initializing");
-
         // get reference to canvas
         canvas = document.getElementById("stage");
         // set canvas to as wide/high as the browser window
@@ -56,7 +54,6 @@
     }
 
     function onSetup(e) {
-        console.log(">> adding sprites to game");
         stage.removeEventListener("onAllAssetsLoaded", onSetup);
 
         // construct game objects
@@ -67,18 +64,15 @@
         introScreen = new IntroScreen(assetManager, stage);
         contentScreen = new ContentScreen(assetManager, stage, introScreen);
         instructionScreen = new InstructionScreen(assetManager, stage);
-        
+
         myMusic = new Audio('lib/gameMusic.ogg');
-        myMusic.addEventListener('ended', function() {
+        myMusic.addEventListener('ended', function () {
             this.currentTime = 0;
             this.play();
         }, false);
         myMusic.play();
 
         introScreen.showMe();
-        //createjs.Sound.play("gameMusic");
-        
-
 
         // startup the ticker
         createjs.Ticker.setFPS(frameRate);
@@ -89,8 +83,6 @@
         stage.addEventListener("instructionFinished", onInstructionFinished);
         stage.addEventListener("contentFinished", onContentFinished);
 
-
-        console.log(">> main screen ready");
     }
 
     function onTick(e) {

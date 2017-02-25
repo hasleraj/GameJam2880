@@ -34,12 +34,9 @@ var Player = function (assetManager, stage, myX, myY) {
     var lastDirection = MoverDirection.RIGHT;
 
     var timer = null;
-    var timerTimeout = 10000;
+    var timerTimeout = 5000;
 
     // character sprite variables
-    // var dotAshX = false;
-    // var betty = false;
-    // var ninja = false;
     var walkDown = null;
     var walkSide = null;
     var walkUp = null;
