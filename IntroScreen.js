@@ -13,9 +13,9 @@ var IntroScreen = function (assetManager, stage) {
     var hitAreaSprite = assetManager.getSprite("assets");
     //add play button
     var btnPlay = assetManager.getSprite("assets");
-    btnPlay.gotoAndStop("walkRight");
-    btnPlay.x = 200;
-    btnPlay.y = 140;
+    btnPlay.gotoAndStop("btnPlayUp");
+    btnPlay.x = 100;
+    btnPlay.y = 340;
     btnPlay.buttonHelper = new createjs.ButtonHelper(btnPlay, "btnPlayUp", "btnPlayDown", "btnPlayDown", false, hitAreaSprite, "hitArea");
     screen.addChild(btnPlay);
     btnPlay.addEventListener("click", onClickPlay);
@@ -23,8 +23,8 @@ var IntroScreen = function (assetManager, stage) {
     //add instruction button
     var btnInstruction = assetManager.getSprite("assets");
     btnInstruction.gotoAndStop("btnInstructionsUp");
-    btnInstruction.x = 200;
-    btnInstruction.y = 240;
+    btnInstruction.x = 300;
+    btnInstruction.y = 340;
     btnInstruction.buttonHelper = new createjs.ButtonHelper(btnInstruction, "btnInstructionsUp", "btnInstructionsDown", "btnInstructionsDown", false, hitAreaSprite, "hitArea");
     screen.addChild(btnInstruction);
     btnInstruction.addEventListener("click", onClickInstruction);

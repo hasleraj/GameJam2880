@@ -13,8 +13,8 @@ var InstructionScreen = function (assetManager, stage) {
     var hitAreaSprite = assetManager.getSprite("assets");
     var btnBack = assetManager.getSprite("assets");
     btnBack.gotoAndStop("walkDown");
-    btnBack.x = 200;
-    btnBack.y = 340;
+    btnBack.x = 65;
+    btnBack.y = 360;
     btnBack.buttonHelper = new createjs.ButtonHelper(btnBack, "btnBackUp", "btnBackDown", "btnBackDown", false, hitAreaSprite, "hitArea");
     screen.addChild(btnBack);
     btnBack.addEventListener("click", onClick);
