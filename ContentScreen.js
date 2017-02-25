@@ -36,6 +36,7 @@ var ContentScreen = function (assetManager, stage, myIntroScreen) {
     //track time alive and score
     var startTime = null;
     var score = null;
+    var gameOver = null;
 
     /************** Asset Setup **************/
     var lifeOne = assetManager.getSprite("assets");
@@ -74,6 +75,21 @@ var ContentScreen = function (assetManager, stage, myIntroScreen) {
 
 
 
+    /************** Private Methods **************/
+
+    function resetMe() {
+
+        //need to set lives back to 3 otherwise everything glitches
+
+        screen.removeChild(btnRestart);
+        screen.removeChild(btnMainMenu);
+
+        entity.setLives(3);
+        screen.removeChild(entity);
+        lifeOne.gotoAndStop("heartAlive");
+        lifeTwo.gotoAndStop("heartAlive");
+        lifeThree.gotoAndStop("heartAlive");
+    }
     /************** Public Methods **************/
 
     this.onSetup = function () {
@@ -124,11 +140,6 @@ var ContentScreen = function (assetManager, stage, myIntroScreen) {
     };
 
     /************** Event Handlers **************/
-
-    function onMainMenu(e) {
-        stage.dispatchEvent(eventScreenComplete);
-
-    }
 
     function onStartGame(e) {
 
@@ -192,7 +203,7 @@ var ContentScreen = function (assetManager, stage, myIntroScreen) {
         }
 
         if (entity.getLives() === 0) {
-            var gameOver = assetManager.getSprite("assets");
+            gameOver = assetManager.getSprite("assets");
             gameOver.gotoAndStop("gameOverBg");
             gameOver.x = 0;
             gameOver.y = -2;
@@ -237,7 +248,7 @@ var ContentScreen = function (assetManager, stage, myIntroScreen) {
     }
 
     function onRestart(e) {
-        console.log("restart button");
+        resetMe();
     }
 
 };
