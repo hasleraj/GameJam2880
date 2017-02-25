@@ -88,6 +88,14 @@ var ContentScreen = function (assetManager, stage, myIntroScreen) {
         entity.showMe();
     }
 
+    function poolResources() {
+        // construct and setup timers to drop objects on display list
+        fireballDelay = 500;
+        fireballTimer = window.setInterval(onAddFireball, fireballDelay);
+        compassDelay = 500;
+        compassTimer = window.setInterval(onAddCompass, compassDelay);
+    }
+
     /************** Public Methods **************/
 
     this.onSetup = function () {
@@ -124,7 +132,6 @@ var ContentScreen = function (assetManager, stage, myIntroScreen) {
 
         // setup event listener to start game
         document.addEventListener("click", onStartGame);
-        console.log(">> game ready");
 
         startTime = (new Date()).getTime();
     };
@@ -141,24 +148,12 @@ var ContentScreen = function (assetManager, stage, myIntroScreen) {
     /************** Event Handlers **************/
 
     function onStartGame(e) {
-
         game = true;
-        // construct and setup timers to drop objects on display list
-        fireballDelay = 500;
-        fireballTimer = window.setInterval(onAddFireball, fireballDelay);
-
-        compassDelay = 500;
-        compassTimer = window.setInterval(onAddCompass, compassDelay);
-
+        poolResources();
     }
 
     function onGamePlay(e) {
-        // construct and setup timers to drop objects on display list
-        fireballDelay = 500;
-        fireballTimer = window.setInterval(onAddFireball, fireballDelay);
-
-        compassDelay = 500;
-        compassTimer = window.setInterval(onAddCompass, compassDelay);
+        poolResources();
     }
 
     function onGameOver(e) {
@@ -214,7 +209,6 @@ var ContentScreen = function (assetManager, stage, myIntroScreen) {
             screen.addChild(gameOver);
             lifeOne.gotoAndStop("heartDead");
             screen.addChild(btnRestart);
-            game = false;
             game = false;
 
         } else {

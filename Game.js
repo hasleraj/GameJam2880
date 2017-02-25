@@ -65,6 +65,7 @@
         contentScreen = new ContentScreen(assetManager, stage, introScreen);
         instructionScreen = new InstructionScreen(assetManager, stage);
 
+        //Repeat background music on continuous loop
         myMusic = new Audio('lib/gameMusic.ogg');
         myMusic.addEventListener('ended', function () {
             this.currentTime = 0;
@@ -77,7 +78,6 @@
         // startup the ticker
         createjs.Ticker.setFPS(frameRate);
         createjs.Ticker.addEventListener("tick", onTick);
-
 
         stage.addEventListener("introFinished", onIntroFinished);
         stage.addEventListener("instructionFinished", onInstructionFinished);
@@ -94,7 +94,6 @@
     }
 
     function onIntroFinished(e) {
-        console.log("intro is finished");
         if (e.buttonNumber === 1) {
             introScreen.hideMe();
             contentScreen.showMe();
