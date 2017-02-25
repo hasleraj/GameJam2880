@@ -15,7 +15,7 @@ var InstructionScreen = function (assetManager, stage) {
     btnBack.gotoAndStop("walkDown");
     btnBack.x = 65;
     btnBack.y = 360;
-    btnBack.buttonHelper = new createjs.ButtonHelper(btnBack, "btnBackUp", "btnBackDown", "btnBackDown", false, hitAreaSprite, "hitArea");
+    btnBack.buttonHelper = new createjs.ButtonHelper(btnBack, "btnBackUp", "btnBackDown", "btnBackDown", false);
     screen.addChild(btnBack);
     btnBack.addEventListener("click", onClick);
 
@@ -27,7 +27,7 @@ var InstructionScreen = function (assetManager, stage) {
 
 
 
-    //------------------------------public methods
+    /************** Public Methods**************/
     this.showMe = function () {
         stage.addChild(screen);
     };
@@ -36,7 +36,7 @@ var InstructionScreen = function (assetManager, stage) {
         stage.removeChild(screen);
     };
 
-    //-----------------------------event handlers
+    /************** Event Handlers **************/
     function onClick(e) {
         eventScreenComplete.buttonNumber = 0;
         stage.dispatchEvent(eventScreenComplete);

@@ -1,15 +1,15 @@
 var manifest = [
     {
-        src:"lib/assets.json",
-        forSpritesheet:"assets"
+        src: "lib/assets.json",
+        forSpritesheet: "assets"
     },
     {
-        src:"lib/assets.png",
-        id:"assets"
+        src: "lib/assets.png",
+        id: "assets"
     },
-     {
-        src:"lib/gameMusic.ogg",
-        id:"gameMusic",
-        data:4
+    {
+        src: "lib/gameMusic.ogg",
+        id: "gameMusic",
+        data: 4
     }
 ];

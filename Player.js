@@ -192,7 +192,7 @@ var Player = function (assetManager, stage, myX, myY, char) {
         getPhysical = value;
     };
 
-    this.getLives = function() {
+    this.getLives = function () {
         return lives;
     };
 
@@ -263,14 +263,14 @@ var Player = function (assetManager, stage, myX, myY, char) {
         }
         var dimensions = sprite.getBounds();
         //collision test with walls
-        if (sprite.x < 0 /* left  */ ) {
+        if (sprite.x < 20 /* left  */ ) {
             sprite.x = (dimensions.width) / 2;
-        } else if (sprite.x > 600 /* right */ ) {
-            sprite.x = 600 - ((dimensions.width) / 2);
-        } else if (sprite.y < 0 /* top */ ) {
+        } else if (sprite.x > 580 /* right */ ) {
+            sprite.x = 580 - ((dimensions.width) / 2);
+        } else if (sprite.y < 20 /* top */ ) {
             sprite.y = (dimensions.height) / 2;
-        } else if (sprite.y > 600 /*bottom */ ) {
-            sprite.y = 600 - (dimensions.height) / 2;
+        } else if (sprite.y > 570 /*bottom */ ) {
+            sprite.y = 570 - (dimensions.height) / 2;
         }
     };
 
@@ -307,8 +307,8 @@ var Player = function (assetManager, stage, myX, myY, char) {
         //timer = window.setInterval(timerTester, timerTimeout);
     };
 
-    this.removeLives = function() {
-        lives = lives -1;
+    this.removeLives = function () {
+        lives = lives - 1;
         return lives;
     };
 
