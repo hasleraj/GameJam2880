@@ -69,6 +69,7 @@ var Compass = function (stage, assetManager, player) {
         if (c <= 51) {
             sprite.dispatchEvent(eventCompassCollected);
             onCollectMe();
+            createjs.Sound.play("hitCompass");
         }
     };
 

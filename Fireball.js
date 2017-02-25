@@ -92,6 +92,7 @@ var Fireball = function (stage, assetManager, player) {
             player.removeLives();
             console.log("- one life");
             onKillMe();
+            createjs.Sound.play("hitFire");
         }
     };
 

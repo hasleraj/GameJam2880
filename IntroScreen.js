@@ -98,23 +98,28 @@ var IntroScreen = function (assetManager, stage) {
     function onClickPlay(e) {
         eventScreenComplete.buttonNumber = 1;
         stage.dispatchEvent(eventScreenComplete);
+        createjs.Sound.play("buttonClick");
     }
 
     function onClickInstruction(e) {
         eventScreenComplete.buttonNumber = 2;
         stage.dispatchEvent(eventScreenComplete);
+        createjs.Sound.play("buttonClick");
     }
 
     function onClickBetty(e) {
         character = 3;
+        createjs.Sound.play("buttonClick");
     }
 
     function onClickAsh(e) {
         character = 2;
+        createjs.Sound.play("buttonClick");
     }
 
     function onClickNinja(e) {
         character = 1;
+        createjs.Sound.play("buttonClick");
     }
 
 };

@@ -39,6 +39,7 @@ var InstructionScreen = function (assetManager, stage) {
     function onClick(e) {
         eventScreenComplete.buttonNumber = 0;
         stage.dispatchEvent(eventScreenComplete);
+        createjs.Sound.play("buttonClick");
     }
 
 };
