@@ -171,6 +171,12 @@ var ContentScreen = function (assetManager, stage, myIntroScreen) {
         // TESTING FPS
         document.getElementById("fps").innerHTML = createjs.Ticker.getMeasuredFPS();
 
+        if (entity.getLives() === 2) {
+            lifeThree.gotoAndStop("heartDead");
+        } else if (entity.getLives() === 1) {
+            lifeTwo.gotoAndStop("heartDead");
+        }
+
         if (entity.getLives() === 0) {
             var gameOver = assetManager.getSprite("assets");
             gameOver.gotoAndStop("gameOverBg");
@@ -178,6 +184,7 @@ var ContentScreen = function (assetManager, stage, myIntroScreen) {
             gameOver.y = -2;
             screen.addChildAt(gameOver, 0);
             stage.addChild(score);
+            lifeOne.gotoAndStop("heartDead");
 
         } else {
             // update all fireballs (their mover) in pool if active
