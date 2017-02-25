@@ -9,8 +9,8 @@ var IntroScreen = function (assetManager, stage) {
 
     //construct container object
     var screen = new createjs.Container();
-
     var hitAreaSprite = assetManager.getSprite("assets");
+    var character = "";
 
 
     var background = assetManager.getSprite("assets");
@@ -42,9 +42,7 @@ var IntroScreen = function (assetManager, stage) {
     firstCharacterTile.y = 170;
     firstCharacterTile.buttonHelper = new createjs.ButtonHelper(firstCharacterTile, "deselectedCharacter", "selectedCharacter", "selectedCharacter", false);
     screen.addChild(firstCharacterTile);
-    firstCharacterTile.addEventListener("click", onClickSelection);
-    console.log(firstCharacterTile.hitTest(stage.mouseX, stage.mouseY));
-
+    firstCharacterTile.addEventListener("click", onClickNinja);
 
     var secondCharacterTile = assetManager.getSprite("assets");
     secondCharacterTile.gotoAndStop("deselectedCharacter");
@@ -52,7 +50,7 @@ var IntroScreen = function (assetManager, stage) {
     secondCharacterTile.y = 170;
     secondCharacterTile.buttonHelper = new createjs.ButtonHelper(secondCharacterTile, "deselectedCharacter", "selectedCharacter", "selectedCharacter", false);
     screen.addChild(secondCharacterTile);
-    secondCharacterTile.addEventListener("click", onClickSelection);
+    secondCharacterTile.addEventListener("click", onClickAsh);
 
 
     var thirdCharacterTile = assetManager.getSprite("assets");
@@ -61,7 +59,7 @@ var IntroScreen = function (assetManager, stage) {
     thirdCharacterTile.y = 170;
     thirdCharacterTile.buttonHelper = new createjs.ButtonHelper(thirdCharacterTile, "deselectedCharacter", "selectedCharacter", "selectedCharacter", false);
     screen.addChild(thirdCharacterTile);
-    thirdCharacterTile.addEventListener("click", onClickSelection);
+    thirdCharacterTile.addEventListener("click", onClickBetty);
 
 
 
@@ -87,6 +85,10 @@ var IntroScreen = function (assetManager, stage) {
 
 
 
+    /************** Get/Set Methods **************/
+    this.getCharacter = function () {
+        return character;
+    };
 
     //------------------------------public methods
     this.showMe = function () {
@@ -100,18 +102,24 @@ var IntroScreen = function (assetManager, stage) {
     //-----------------------------event handlers
     function onClickPlay(e) {
         eventScreenComplete.buttonNumber = 1;
-
         stage.dispatchEvent(eventScreenComplete);
     }
 
     function onClickInstruction(e) {
         eventScreenComplete.buttonNumber = 2;
-
         stage.dispatchEvent(eventScreenComplete);
     }
 
-    function onClickSelection(e) {
+    function onClickBetty(e) {
+        character = "betty";
+    }
 
+    function onClickAsh(e) {
+        character = "ash";
+    }
+
+    function onClickNinja(e) {
+        character = "ninja";
     }
 
 };
