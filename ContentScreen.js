@@ -113,6 +113,7 @@ var ContentScreen = function (assetManager, stage, myIntroScreen) {
         entity.setCharacter(introScreen.getCharacter());
         entity.showMe();
 
+
         entity.resetKeys();
 
         // fireball object pooling - constructing fireball objects

@@ -47,7 +47,7 @@ var Player = function (assetManager, stage, myX, myY) {
 
     // add player to the screen
     var sprite = assetManager.getSprite("assets");
-    //sprite.gotoAndStop(walkDown);
+    sprite.gotoAndStop(walkDown);
     sprite.x = myX;
     sprite.y = myY;
     sprite.regX = sprite.getBounds().width / 2;
@@ -207,6 +207,8 @@ var Player = function (assetManager, stage, myX, myY) {
         // ....
 
         timer = window.setInterval(timerTester, timerTimeout);
+
+        sprite.gotoAndStop(walkDown);
 
 
         stage.addChild(screen);
