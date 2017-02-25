@@ -30,7 +30,7 @@ var ContentScreen = function (assetManager, stage, myIntroScreen) {
     // variables for compass object
     var compassTimer = null;
     var compassDelay = 0;
-    var compassMax = 10;
+    var compassMax = 3;
     var compassPool = [];
 
     //track time alive and score
@@ -38,8 +38,9 @@ var ContentScreen = function (assetManager, stage, myIntroScreen) {
     var currentTime = null;
     var time = 0;
     var score = null;
-    var background = null;
+    var background = assetManager.getSprite("assets");
     var timerTimeout = 3000;
+    var gameOver;
 
     /************** Asset Setup **************/
     var lifeOne = assetManager.getSprite("assets");
@@ -81,8 +82,7 @@ var ContentScreen = function (assetManager, stage, myIntroScreen) {
     /************** Private Methods **************/
 
     function resetMe() {
-
-        screen.removeAllChildren();
+        screen.removeChild(gameOver);
         background.gotoAndPlay("backgroundTwo");
         screen.addChild(background);
         lifeOne.gotoAndPlay("heartAlive");
@@ -93,6 +93,7 @@ var ContentScreen = function (assetManager, stage, myIntroScreen) {
         screen.addChild(lifeThree);
         entity.setLives(3);
         entity.showMe();
+
 
 
     }
@@ -210,11 +211,11 @@ var ContentScreen = function (assetManager, stage, myIntroScreen) {
         }
 
         if (entity.getLives() === 0) {
-            background = assetManager.getSprite("assets");
-            background.gotoAndStop("gameOverBg");
-            background.x = 0;
-            background.y = -2;
-            screen.addChildAt(background, 0);
+            gameOver = assetManager.getSprite("assets");
+            gameOver.gotoAndStop("gameOver");
+            gameOver.x = 0;
+            gameOver.y = -2;
+            screen.addChild(gameOver);
             stage.addChild(score);
             lifeOne.gotoAndStop("heartDead");
             screen.addChild(btnRestart);
@@ -235,7 +236,6 @@ var ContentScreen = function (assetManager, stage, myIntroScreen) {
                     compassPool[k].updateMe();
                 }
             }
-
 
             // update the score
             currentTime = (new Date()).getTime();

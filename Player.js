@@ -96,7 +96,7 @@ var Player = function (assetManager, stage, myX, myY) {
             ary[ary.length] = randomnumber;
         }
 
-        //getPhysical = true;
+        getPhysical = true;
 
         return ary;
     }
@@ -348,9 +348,7 @@ var Player = function (assetManager, stage, myX, myY) {
     }
 
     function timerTester(e) {
-        //console.log("Boop!");
-        //getPhysical = true;
-
+        getPhysical = true;
     }
 
 };
