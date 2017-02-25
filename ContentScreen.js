@@ -195,7 +195,7 @@ var ContentScreen = function (assetManager, stage, myIntroScreen) {
 
 
             // update the score
-            currentTime = (new Date()).getTime();
+            var currentTime = (new Date()).getTime();
             var time = Math.floor((currentTime - startTime) / 1000);
             score.text = "Game score: " + (time * 119);
 
