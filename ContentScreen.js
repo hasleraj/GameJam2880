@@ -188,8 +188,6 @@ var ContentScreen = function (assetManager, stage, myIntroScreen) {
     }
 
     function onTick(e) {
-        // TESTING FPS
-        document.getElementById("fps").innerHTML = createjs.Ticker.getMeasuredFPS();
 
         //remove individual life trackers when player collides with fireball
         if (entity.getLives() === 2) {

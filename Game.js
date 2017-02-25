@@ -86,9 +86,6 @@
     }
 
     function onTick(e) {
-        // TESTING FPS
-        document.getElementById("fps").innerHTML = createjs.Ticker.getMeasuredFPS();
-
         // update the stage!
         stage.update();
     }
