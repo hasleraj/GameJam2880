@@ -34,7 +34,7 @@ var Player = function (assetManager, stage, myX, myY) {
     var lastDirection = MoverDirection.RIGHT;
 
     var timer = null;
-    var timerTimeout = 5000;
+    var timerTimeout = 10000;
 
     // character sprite variables
     // var dotAshX = false;
@@ -305,7 +305,7 @@ var Player = function (assetManager, stage, myX, myY) {
 
     this.resetTimer = function () {
         window.clearInterval(timerTimeout);
-        //timer = window.setInterval(timerTester, timerTimeout);
+        timer = window.setInterval(timerTester, timerTimeout);
     };
 
     this.removeLives = function () {
