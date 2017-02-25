@@ -23,12 +23,12 @@ var Compass = function (stage, assetManager, player) {
     var sprite = assetManager.getSprite("assets");
     sprite.gotoAndPlay("compass");
 
-    // --------------------------------------------- private methods
+    /************** Private Methods **************/
     function randomMe(low, high) {
         return Math.round(Math.random() * (high - low)) + low;
     }
 
-    // ---------------------------------------------- get/set methods
+    /************** Get/Set Methods**************/
     this.getActive = function () {
         return active;
     };
@@ -37,7 +37,7 @@ var Compass = function (stage, assetManager, player) {
         active = value;
     };
 
-    // ---------------------------------------------- public methods
+    /************** Public Methods **************/
     this.setupMe = function () {
 
         // get bounds of sprite so we can determine width / height
@@ -72,7 +72,7 @@ var Compass = function (stage, assetManager, player) {
         }
     };
 
-    // ----------------------------------------------- event handlers
+    /************** Event Handlers **************/
     function onCollectMe(e) {
         // play end sequence of compass
         sprite.gotoAndPlay("compass");

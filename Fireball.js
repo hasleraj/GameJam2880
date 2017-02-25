@@ -25,12 +25,12 @@ var Fireball = function (stage, assetManager, player) {
     var spriteMover = new MoverDiagonal(sprite, stage);
 
 
-    // --------------------------------------------- private methods
+    /************** Private Methods **************/
     function randomMe(low, high) {
         return Math.round(Math.random() * (high - low)) + low;
     }
 
-    // ---------------------------------------------- get/set methods
+    /************** Get/Set Methods **************/
     this.getActive = function () {
         return active;
     };
@@ -39,7 +39,7 @@ var Fireball = function (stage, assetManager, player) {
         active = value;
     };
 
-    // ---------------------------------------------- public methods
+    /************** Public Methods **************/
     this.setupMe = function () {
         // random selection of speed of fireball
         spriteMover.setSpeed(randomMe(2, 6));
@@ -95,7 +95,7 @@ var Fireball = function (stage, assetManager, player) {
         }
     };
 
-    // ----------------------------------------------- event handlers
+    /************** Event Handlers **************/
     function onKillMe(e) {
         spriteMover.stopMe();
         // play death sequence of fireball

@@ -33,7 +33,7 @@
     //add in background
     var background = null;
 
-    // ------------------------------------------------------------ event handlers
+    /************** Event Handlers **************/
     function onInit() {
         console.log(">> initializing");
 
