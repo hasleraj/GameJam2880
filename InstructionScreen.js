@@ -15,7 +15,7 @@ var InstructionScreen = function (assetManager, stage) {
     btnBack.gotoAndStop("walkDown");
     btnBack.x = 65;
     btnBack.y = 360;
-    btnBack.buttonHelper = new createjs.ButtonHelper(btnBack, "btnBackUp", "btnBackDown", "btnBackDown", false, hitAreaSprite, "hitArea");
+    btnBack.buttonHelper = new createjs.ButtonHelper(btnBack, "btnBackUp", "btnBackDown", "btnBackDown", false);
     screen.addChild(btnBack);
     btnBack.addEventListener("click", onClick);
 

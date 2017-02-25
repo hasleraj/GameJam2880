@@ -148,8 +148,14 @@ var ContentScreen = function (assetManager, stage) {
         document.getElementById("fps").innerHTML = createjs.Ticker.getMeasuredFPS();
 
         if (entity.getLives() === 0) {
-            console.log("You have died. GG!");
-        } else { 
+            var gameOver = assetManager.getSprite("assets");
+            gameOver.gotoAndStop("gameOverBg");
+            gameOver.x = 0;
+            gameOver.y = -2;
+            screen.addChildAt(gameOver, 0);
+            stage.addChild(score);
+
+        } else {
             // update all fireballs (their mover) in pool if active
             for (var n = 0; n < fireballPool.length; n++) {
                 if (fireballPool[n].getActive()) {
@@ -163,10 +169,10 @@ var ContentScreen = function (assetManager, stage) {
                 }
             }
 
-            
+
             // update the score
             currentTime = (new Date()).getTime();
-            var time = Math.floor((currentTime-startTime)/1000);
+            var time = Math.floor((currentTime - startTime) / 1000);
             score.text = "Game score: " + (time * 119);
 
             //update sprite

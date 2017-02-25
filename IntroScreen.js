@@ -22,7 +22,7 @@ var IntroScreen = function (assetManager, stage) {
     btnPlay.gotoAndStop("btnPlayUp");
     btnPlay.x = 100;
     btnPlay.y = 340;
-    btnPlay.buttonHelper = new createjs.ButtonHelper(btnPlay, "btnPlayUp", "btnPlayDown", "btnPlayDown", false, hitAreaSprite, "hitArea");
+    btnPlay.buttonHelper = new createjs.ButtonHelper(btnPlay, "btnPlayUp", "btnPlayDown", "btnPlayDown", false);
     screen.addChild(btnPlay);
     btnPlay.addEventListener("click", onClickPlay);
 
@@ -31,7 +31,7 @@ var IntroScreen = function (assetManager, stage) {
     btnInstruction.gotoAndStop("btnInstructionsUp");
     btnInstruction.x = 300;
     btnInstruction.y = 340;
-    btnInstruction.buttonHelper = new createjs.ButtonHelper(btnInstruction, "btnInstructionsUp", "btnInstructionsDown", "btnInstructionsDown", false, hitAreaSprite, "hitArea");
+    btnInstruction.buttonHelper = new createjs.ButtonHelper(btnInstruction, "btnInstructionsUp", "btnInstructionsDown", "btnInstructionsDown", false);
     screen.addChild(btnInstruction);
     btnInstruction.addEventListener("click", onClickInstruction);
 
@@ -40,24 +40,30 @@ var IntroScreen = function (assetManager, stage) {
     firstCharacterTile.gotoAndStop("deselectedCharacter");
     firstCharacterTile.x = 40;
     firstCharacterTile.y = 170;
-    firstCharacterTile.buttonHelper = new createjs.ButtonHelper(firstCharacterTile, "deselectedCharacter", "selectedCharacter", "selectedCharacter", false, hitAreaSprite, "hitArea");
+    firstCharacterTile.buttonHelper = new createjs.ButtonHelper(firstCharacterTile, "deselectedCharacter", "selectedCharacter", "selectedCharacter", false);
     screen.addChild(firstCharacterTile);
     firstCharacterTile.addEventListener("click", onClickSelection);
+    console.log(firstCharacterTile.hitTest(stage.mouseX, stage.mouseY));
 
 
     var secondCharacterTile = assetManager.getSprite("assets");
     secondCharacterTile.gotoAndStop("deselectedCharacter");
     secondCharacterTile.x = 230;
     secondCharacterTile.y = 170;
-    secondCharacterTile.buttonHelper = new createjs.ButtonHelper(secondCharacterTile, "deselectedCharacter", "selectedCharacter", "selectedCharacter", false, hitAreaSprite, "hitArea");
+    secondCharacterTile.buttonHelper = new createjs.ButtonHelper(secondCharacterTile, "deselectedCharacter", "selectedCharacter", "selectedCharacter", false);
     screen.addChild(secondCharacterTile);
+    secondCharacterTile.addEventListener("click", onClickSelection);
+
 
     var thirdCharacterTile = assetManager.getSprite("assets");
     thirdCharacterTile.gotoAndStop("deselectedCharacter");
     thirdCharacterTile.x = 410;
     thirdCharacterTile.y = 170;
-    thirdCharacterTile.buttonHelper = new createjs.ButtonHelper(thirdCharacterTile, "deselectedCharacter", "selectedCharacter", "selectedCharacter", false, hitAreaSprite, "hitArea");
+    thirdCharacterTile.buttonHelper = new createjs.ButtonHelper(thirdCharacterTile, "deselectedCharacter", "selectedCharacter", "selectedCharacter", false);
     screen.addChild(thirdCharacterTile);
+    thirdCharacterTile.addEventListener("click", onClickSelection);
+
+
 
     /************** Character Setup **************/
     var firstCharacter = assetManager.getSprite("assets");
@@ -77,6 +83,7 @@ var IntroScreen = function (assetManager, stage) {
     thirdCharacter.x = 448;
     thirdCharacter.y = 210;
     screen.addChild(thirdCharacter);
+
 
 
 
