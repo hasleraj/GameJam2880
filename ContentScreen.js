@@ -82,8 +82,7 @@ var ContentScreen = function (assetManager, stage, myIntroScreen) {
 
     function resetMe() {
 
-        screen.removeChild(btnRestart);
-        screen.removeChild(btnMainMenu);
+        screen.removeAllChildren();
         background.gotoAndPlay("backgroundTwo");
         screen.addChild(background);
         lifeOne.gotoAndPlay("heartAlive");
