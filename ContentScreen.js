@@ -83,12 +83,14 @@ var ContentScreen = function (assetManager, stage, myIntroScreen) {
 
         screen.removeChild(btnRestart);
         screen.removeChild(btnMainMenu);
-
+        gameOver.gotoAndPlay("backgroundTwo");
+        screen.addChild(gameOver);
+        lifeOne.gotoAndPlay("heartAlive");
+        lifeTwo.gotoAndPlay("heartAlive");
+        lifeThree.gotoAndPlay("heartAlive");
         entity.setLives(3);
-        screen.removeChild(entity);
-        lifeOne.gotoAndStop("heartAlive");
-        lifeTwo.gotoAndStop("heartAlive");
-        lifeThree.gotoAndStop("heartAlive");
+        entity.showMe();
+
     }
     /************** Public Methods **************/
 
