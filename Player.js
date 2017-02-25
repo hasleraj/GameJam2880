@@ -5,7 +5,7 @@
 /*globals AssetManager */
 /* globals manifest */
 
-var Player = function (assetManager, stage, myX, myY, char) {
+var Player = function (assetManager, stage, myX, myY) {
     "use strict";
     // custom event
     var eventScreenComplete = new createjs.Event("contentFinished");
@@ -40,7 +40,6 @@ var Player = function (assetManager, stage, myX, myY, char) {
     // var dotAshX = false;
     // var betty = false;
     // var ninja = false;
-    var character = char;
     var walkDown = null;
     var walkSide = null;
     var walkUp = null;
@@ -48,7 +47,7 @@ var Player = function (assetManager, stage, myX, myY, char) {
 
     // add player to the screen
     var sprite = assetManager.getSprite("assets");
-    sprite.gotoAndStop("walkDownC");
+    sprite.gotoAndStop(walkDown);
     sprite.x = myX;
     sprite.y = myY;
     sprite.regX = sprite.getBounds().width / 2;
@@ -102,22 +101,6 @@ var Player = function (assetManager, stage, myX, myY, char) {
         return ary;
     }
 
-    function chooseChar() {
-        if (character === "betty"){
-            walkDown = "walkDownC";
-            walkSide = "walkLeftC";
-            walkUp = "walkUpC";
-        } else if (character === "ash"){
-            walkDown = "walkDownB";
-            walkSide = "walkLeftB";
-            walkUp = "walkUpB";
-        } else if (character === "ninja"){
-            walkDown = "walkDown";
-            walkSide = "walkLeft";
-            walkUp = "walkUp";
-        }
-    }
-
     function monitorKeys() {
 
         if (leftKey && !moving) {
@@ -127,7 +110,7 @@ var Player = function (assetManager, stage, myX, myY, char) {
                 direction = MoverDirection.LEFT;
             }
 
-            sprite.gotoAndStop("walkLeftC");
+            sprite.gotoAndStop(walkSide);
             startMe();
 
         } else if (rightKey && !moving) {
@@ -137,7 +120,7 @@ var Player = function (assetManager, stage, myX, myY, char) {
                 direction = MoverDirection.RIGHT;
             }
 
-            sprite.gotoAndStop("walkLeftC");
+            sprite.gotoAndStop(walkSide);
             startMe();
 
         } else if (downKey && !moving) {
@@ -147,7 +130,7 @@ var Player = function (assetManager, stage, myX, myY, char) {
                 direction = MoverDirection.DOWN;
             }
 
-            sprite.gotoAndStop("walkDownC");
+            sprite.gotoAndStop(walkDown);
             startMe();
 
         } else if (upKey && !moving) {
@@ -157,7 +140,7 @@ var Player = function (assetManager, stage, myX, myY, char) {
                 direction = MoverDirection.UP;
             }
 
-            sprite.gotoAndStop("walkUpC");
+            sprite.gotoAndStop(walkUp);
             startMe();
         }
     }
@@ -196,8 +179,21 @@ var Player = function (assetManager, stage, myX, myY, char) {
         return lives;
     };
 
-    this.setCharacter = function() {
-
+    this.setCharacter = function(char) {
+        var character = char;
+        if (character === "betty"){
+            walkDown = "walkDownC";
+            walkSide = "walkLeftC";
+            walkUp = "walkUpC";
+        } else if (character === "ash"){
+            walkDown = "walkDownB";
+            walkSide = "walkLeftB";
+            walkUp = "walkUpB";
+        } else if (character === "ninja"){
+            walkDown = "walkDown";
+            walkSide = "walkLeft";
+            walkUp = "walkUp";
+        }
     }
 
     // ---------------------------------- public methods
@@ -311,6 +307,7 @@ var Player = function (assetManager, stage, myX, myY, char) {
         lives = lives - 1;
         return lives;
     };
+
 
     // ------------------------------------ event handlers
     function onKeyPress(e) {
