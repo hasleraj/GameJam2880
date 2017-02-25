@@ -40,7 +40,7 @@ var IntroScreen = function (assetManager, stage) {
     firstCharacterTile.gotoAndStop("deselectedCharacter");
     firstCharacterTile.x = 40;
     firstCharacterTile.y = 170;
-    firstCharacterTile.buttonHelper = new createjs.ButtonHelper(firstCharacterTile, "deselectedCharacter", "selectedCharacter", "selectedCharacter", false);
+    firstCharacterTile.buttonHelper = new createjs.ButtonHelper(firstCharacterTile);
     screen.addChild(firstCharacterTile);
     firstCharacterTile.addEventListener("click", onClickNinja);
 
@@ -48,7 +48,7 @@ var IntroScreen = function (assetManager, stage) {
     secondCharacterTile.gotoAndStop("deselectedCharacter");
     secondCharacterTile.x = 230;
     secondCharacterTile.y = 170;
-    secondCharacterTile.buttonHelper = new createjs.ButtonHelper(secondCharacterTile, "deselectedCharacter", "selectedCharacter", "selectedCharacter", false);
+    secondCharacterTile.buttonHelper = new createjs.ButtonHelper(secondCharacterTile);
     screen.addChild(secondCharacterTile);
     secondCharacterTile.addEventListener("click", onClickAsh);
 
@@ -57,7 +57,7 @@ var IntroScreen = function (assetManager, stage) {
     thirdCharacterTile.gotoAndStop("deselectedCharacter");
     thirdCharacterTile.x = 410;
     thirdCharacterTile.y = 170;
-    thirdCharacterTile.buttonHelper = new createjs.ButtonHelper(thirdCharacterTile, "deselectedCharacter", "selectedCharacter", "selectedCharacter", false);
+    thirdCharacterTile.buttonHelper = new createjs.ButtonHelper(thirdCharacterTile);
     screen.addChild(thirdCharacterTile);
     thirdCharacterTile.addEventListener("click", onClickBetty);
 
@@ -109,16 +109,29 @@ var IntroScreen = function (assetManager, stage) {
 
     function onClickBetty(e) {
         character = 3;
+
         createjs.Sound.play("buttonClick");
+        firstCharacterTile.gotoAndStop("deselectedCharacter");
+        secondCharacterTile.gotoAndStop("deselectedCharacter");
+        thirdCharacterTile.gotoAndStop("selectedCharacter");
     }
 
     function onClickAsh(e) {
         character = 2;
+
+        firstCharacterTile.gotoAndStop("deselectedCharacter");
+        secondCharacterTile.gotoAndStop("selectedCharacter");
+        thirdCharacterTile.gotoAndStop("deselectedCharacter");
         createjs.Sound.play("buttonClick");
     }
 
     function onClickNinja(e) {
         character = 1;
+        firstCharacterTile.gotoAndStop("selectedCharacter");
+        secondCharacterTile.gotoAndStop("deselectedCharacter");
+        thirdCharacterTile.gotoAndStop("deselectedCharacter");
+
+
         createjs.Sound.play("buttonClick");
     }
 
