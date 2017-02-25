@@ -9,7 +9,7 @@
 /* globals Compass */
 /* globals IntroScreen */
 /* globals InstructionScreen */
-var ContentScreen = function (assetManager, stage) {
+var ContentScreen = function (assetManager, stage, myIntroScreen) {
 
     //CustomEvent
     var eventScreenComplete = new CustomEvent("contentFinished");
@@ -18,6 +18,8 @@ var ContentScreen = function (assetManager, stage) {
     var screen = new createjs.Container();
     // frame rate of game
     var frameRate = 24;
+
+    var introScreen;
 
     var hitAreaSprite = assetManager.getSprite("assets");
 
@@ -49,7 +51,9 @@ var ContentScreen = function (assetManager, stage) {
         score.textBaseline = "alphabetic";
         stage.addChild(score);
 
-        entity = new Player(assetManager, stage, 275, 275);
+        introScreen = myIntroScreen;
+
+        entity = new Player(assetManager, stage, 275, 275, introScreen.getCharacter());
         entity.showMe();
 
         entity.resetKeys();
