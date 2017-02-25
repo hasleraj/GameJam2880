@@ -90,7 +90,7 @@ var IntroScreen = function (assetManager, stage) {
         return character;
     };
 
-    //------------------------------public methods
+    /************** Public Methods **************/
     this.showMe = function () {
         stage.addChild(screen);
     };
@@ -99,7 +99,7 @@ var IntroScreen = function (assetManager, stage) {
         stage.removeChild(screen);
     };
 
-    //-----------------------------event handlers
+    /************** Event Handlers **************/
     function onClickPlay(e) {
         eventScreenComplete.buttonNumber = 1;
         stage.dispatchEvent(eventScreenComplete);

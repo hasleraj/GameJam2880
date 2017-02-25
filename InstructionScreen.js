@@ -27,7 +27,7 @@ var InstructionScreen = function (assetManager, stage) {
 
 
 
-    //------------------------------public methods
+    /************** Public Methods**************/
     this.showMe = function () {
         stage.addChild(screen);
     };
@@ -36,7 +36,7 @@ var InstructionScreen = function (assetManager, stage) {
         stage.removeChild(screen);
     };
 
-    //-----------------------------event handlers
+    /************** Event Handlers **************/
     function onClick(e) {
         eventScreenComplete.buttonNumber = 0;
         stage.dispatchEvent(eventScreenComplete);

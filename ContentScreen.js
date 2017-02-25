@@ -41,6 +41,9 @@ var ContentScreen = function (assetManager, stage) {
     var startTime = null;
     var score = null;
 
+
+    /************** Public Methods **************/
+
     this.onSetup = function () {
 
         score = new createjs.Text("Hello World", "32px VT323", "#000000");
@@ -77,7 +80,6 @@ var ContentScreen = function (assetManager, stage) {
         startTime = (new Date()).getTime();
     };
 
-    //------------------------------public methods
     this.showMe = function () {
         this.onSetup();
         stage.addChild(screen);
@@ -87,7 +89,7 @@ var ContentScreen = function (assetManager, stage) {
         stage.removeChild(screen);
     };
 
-    //-----------------------------event handlers
+    /************** Event Handlers **************/
     function onClick(e) {
         stage.dispatchEvent(eventScreenComplete);
     }
@@ -113,7 +115,6 @@ var ContentScreen = function (assetManager, stage) {
     }
 
     function onGameOver(e) {
-        // gameOver
         clearInterval(fireballTimer);
     }
 
