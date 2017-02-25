@@ -10,7 +10,7 @@ var IntroScreen = function (assetManager, stage) {
     //construct container object
     var screen = new createjs.Container();
     var hitAreaSprite = assetManager.getSprite("assets");
-    var character = "";
+    var character = 0;
 
 
     var background = assetManager.getSprite("assets");
@@ -111,15 +111,18 @@ var IntroScreen = function (assetManager, stage) {
     }
 
     function onClickBetty(e) {
-        character = "betty";
+        character = 3;
+        console.log(character);
     }
 
     function onClickAsh(e) {
-        character = "ash";
+        character = 2;
+        console.log(character);
     }
 
     function onClickNinja(e) {
-        character = "ninja";
+        character = 1;
+        console.log(character);
     }
 
 };

@@ -64,7 +64,7 @@
         stage.addChild(background);
 
         introScreen = new IntroScreen(assetManager, stage);
-        contentScreen = new ContentScreen(assetManager, stage);
+        contentScreen = new ContentScreen(assetManager, stage, introScreen);
         instructionScreen = new InstructionScreen(assetManager, stage);
 
         introScreen.showMe();

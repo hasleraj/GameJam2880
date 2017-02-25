@@ -47,7 +47,7 @@ var Player = function (assetManager, stage, myX, myY) {
 
     // add player to the screen
     var sprite = assetManager.getSprite("assets");
-    sprite.gotoAndStop("walkDownC");
+    //sprite.gotoAndStop(walkDown);
     sprite.x = myX;
     sprite.y = myY;
     sprite.regX = sprite.getBounds().width / 2;
@@ -110,7 +110,7 @@ var Player = function (assetManager, stage, myX, myY) {
                 direction = MoverDirection.LEFT;
             }
 
-            sprite.gotoAndStop("walkLeftC");
+            sprite.gotoAndStop(walkSide);
             startMe();
 
         } else if (rightKey && !moving) {
@@ -120,7 +120,7 @@ var Player = function (assetManager, stage, myX, myY) {
                 direction = MoverDirection.RIGHT;
             }
 
-            sprite.gotoAndStop("walkLeftC");
+            sprite.gotoAndStop(walkSide);
             startMe();
 
         } else if (downKey && !moving) {
@@ -130,7 +130,7 @@ var Player = function (assetManager, stage, myX, myY) {
                 direction = MoverDirection.DOWN;
             }
 
-            sprite.gotoAndStop("walkDownC");
+            sprite.gotoAndStop(walkDown);
             startMe();
 
         } else if (upKey && !moving) {
@@ -140,7 +140,7 @@ var Player = function (assetManager, stage, myX, myY) {
                 direction = MoverDirection.UP;
             }
 
-            sprite.gotoAndStop("walkUpC");
+            sprite.gotoAndStop(walkUp);
             startMe();
         }
     }
@@ -181,15 +181,16 @@ var Player = function (assetManager, stage, myX, myY) {
 
     this.setCharacter = function(char) {
         var character = char;
-        if (character === "betty"){
+        console.log("player passed in" +char);
+        if (character === 3){
             walkDown = "walkDownC";
             walkSide = "walkLeftC";
             walkUp = "walkUpC";
-        } else if (character === "ash"){
+        } else if (character === 2){
             walkDown = "walkDownB";
             walkSide = "walkLeftB";
             walkUp = "walkUpB";
-        } else if (character === "ninja"){
+        } else if (character === 1){
             walkDown = "walkDown";
             walkSide = "walkLeft";
             walkUp = "walkUp";
