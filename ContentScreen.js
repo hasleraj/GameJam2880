@@ -76,9 +76,6 @@ var ContentScreen = function (assetManager, stage, myIntroScreen) {
     btnMainMenu.buttonHelper = new createjs.ButtonHelper(btnMainMenu, "btnMenuUp", "btnMenuDown", "btnMenuUp", false);
     btnMainMenu.addEventListener("click", onMainMenu);
 
-
-
-
     /************** Private Methods **************/
 
     function resetMe() {
@@ -96,19 +93,22 @@ var ContentScreen = function (assetManager, stage, myIntroScreen) {
         screen.addChild(lifeThree);
         entity.setLives(3);
         entity.showMe();
+    }
 
-
-
+    function removeScore() {
+        console.log("We made it!");
+        //stage.removeChild(score);
     }
     /************** Public Methods **************/
 
     this.onSetup = function () {
-
         score = new createjs.Text("Hello World", "32px VT323", "#000000");
         score.x = 30;
         score.y = 40;
         score.textBaseline = "alphabetic";
         stage.addChild(score);
+        firstConstruction = false;
+
 
         introScreen = myIntroScreen;
 
@@ -262,6 +262,7 @@ var ContentScreen = function (assetManager, stage, myIntroScreen) {
     }
 
     function onMainMenu(e) {
+        removeScore();
         eventScreenComplete.buttonNumber = 0;
         stage.dispatchEvent(eventScreenComplete);
     }

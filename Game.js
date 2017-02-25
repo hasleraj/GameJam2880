@@ -110,7 +110,6 @@
     }
 
     function onContentFinished(e) {
-        console.log(e.buttonNumber);
         if (e.buttonNumber === 0) {
             introScreen.showMe();
             contentScreen.hideMe();
