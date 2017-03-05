@@ -70,8 +70,6 @@ var Compass = function (stage, assetManager, player) {
             sprite.dispatchEvent(eventCompassCollected);
             onCollectMe();
             createjs.Sound.play("hitCompass");
-            player.resetTimer();
-            player.setPhysical(false);
         }
     };
 

@@ -175,7 +175,7 @@ var Player = function (assetManager, stage, myX, myY) {
         return lives;
     };
 
-    this.setTimer = function (value){
+    this.setTimer = function (value) {
         timerTimeout = value;
     };
 
@@ -205,7 +205,7 @@ var Player = function (assetManager, stage, myX, myY) {
     this.showMe = function () {
         // do other stuff here that needs to be done when screen becomes visible
 
-        timer = window.setInterval(timerTester, timerTimeout);
+        this.resetTimer();
 
         sprite.gotoAndStop(walkDown);
 

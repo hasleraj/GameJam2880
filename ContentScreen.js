@@ -89,7 +89,7 @@ var ContentScreen = function (assetManager, stage, myIntroScreen) {
         entity.setPhysical(false);
     }
 
-    function resetGame(){
+    function resetGame() {
         stage.removeAllChildren();
         stage.update();
         this.onSetup();
@@ -167,6 +167,7 @@ var ContentScreen = function (assetManager, stage, myIntroScreen) {
 
     function onGameOver(e) {
         clearInterval(fireballTimer);
+        clearInterval(compassTimer);
     }
 
     function onAddFireball(e) {
