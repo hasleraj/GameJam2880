@@ -92,7 +92,7 @@ var Player = function (assetManager, stage, myX, myY) {
             ary[ary.length] = randomnumber;
         }
 
-        getPhysical = true;
+        //getPhysical = true;
 
         return ary;
     }
@@ -173,6 +173,10 @@ var Player = function (assetManager, stage, myX, myY) {
 
     this.getLives = function () {
         return lives;
+    };
+
+    this.setTimer = function (value){
+        timerTimeout = value;
     };
 
     this.setCharacter = function (char) {
@@ -344,6 +348,7 @@ var Player = function (assetManager, stage, myX, myY) {
 
     function timerTester(e) {
         getPhysical = true;
+        createjs.Sound.play("gameOver");
     }
 
 };

@@ -89,6 +89,14 @@ var ContentScreen = function (assetManager, stage, myIntroScreen) {
         entity.setPhysical(false);
     }
 
+    function resetGame(){
+        stage.removeAllChildren();
+        stage.update();
+        this.onSetup();
+        this.showMe();
+
+    }
+
     function poolResources() {
         // construct and setup timers to drop objects on display list
         fireballDelay = 500;

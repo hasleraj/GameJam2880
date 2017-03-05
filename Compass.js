@@ -71,7 +71,7 @@ var Compass = function (stage, assetManager, player) {
             onCollectMe();
             createjs.Sound.play("hitCompass");
             player.resetTimer();
-            player.getPhysical(false);
+            player.setPhysical(false);
         }
     };
 
@@ -84,6 +84,7 @@ var Compass = function (stage, assetManager, player) {
 
         // compass set the character controls to default
         player.setPhysical(false);
+        player.setTimer(5000);
         player.resetTimer();
     }
 

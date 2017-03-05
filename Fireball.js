@@ -21,6 +21,8 @@ var Fireball = function (stage, assetManager, player) {
 
     // construct sprite for this object and add to stage
     var sprite = assetManager.getSprite("assets");
+    sprite.regX = sprite.getBounds().width / 2;
+    sprite.regY = sprite.getBounds().height / 2;
     sprite.gotoAndPlay("ballOfire");
     var spriteMover = new MoverDiagonal(sprite, stage);
 
@@ -87,7 +89,7 @@ var Fireball = function (stage, assetManager, player) {
         // Get distance using Pythagorian theorem
         var c = Math.sqrt((a * a) + (b * b));
 
-        if (c <= 65) {
+        if (c <= 60) {
             sprite.dispatchEvent(eventPlayerBurned);
             player.removeLives();
             console.log("- one life");
